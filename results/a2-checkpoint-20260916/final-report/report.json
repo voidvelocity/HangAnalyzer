@@ -1,0 +1,281 @@
+{
+  "ranks": {
+    "7": {
+      "pid": 236807,
+      "last_sequence": 10,
+      "last_event": {
+        "timestamp_ns": 14946414367192315,
+        "seq": 10,
+        "pid": 236807,
+        "tid": 237022,
+        "device": 7,
+        "rank": 7,
+        "stream": 553059304,
+        "type": "DEVICE_CONFIRMED",
+        "flags": 0,
+        "correlation_id": 5002,
+        "arg0": 8,
+        "arg1": 2
+      },
+      "last_host_event": {
+        "timestamp_ns": 14946414366865900,
+        "seq": 9,
+        "pid": 236807,
+        "tid": 236807,
+        "device": 7,
+        "rank": 7,
+        "stream": 553059304,
+        "type": "CHECKPOINT",
+        "flags": 1,
+        "correlation_id": 5002,
+        "arg0": 8,
+        "arg1": 2
+      },
+      "last_device_confirmation": {
+        "timestamp_ns": 14946414367192315,
+        "seq": 10,
+        "pid": 236807,
+        "tid": 237022,
+        "device": 7,
+        "rank": 7,
+        "stream": 553059304,
+        "type": "DEVICE_CONFIRMED",
+        "flags": 0,
+        "correlation_id": 5002,
+        "arg0": 8,
+        "arg1": 2
+      },
+      "outstanding_host_scopes": [],
+      "last_events": [
+        {
+          "timestamp_ns": 14946414353166396,
+          "seq": 1,
+          "pid": 236807,
+          "tid": 236807,
+          "device": 7,
+          "rank": 7,
+          "stream": 553059304,
+          "type": "MODEL_END",
+          "flags": 0,
+          "correlation_id": 9001,
+          "arg0": 0,
+          "arg1": 0
+        },
+        {
+          "timestamp_ns": 14946414353333828,
+          "seq": 2,
+          "pid": 236807,
+          "tid": 236807,
+          "device": 7,
+          "rank": 7,
+          "stream": 553059304,
+          "type": "CHECKPOINT",
+          "flags": 1,
+          "correlation_id": 5001,
+          "arg0": 1,
+          "arg1": 1
+        },
+        {
+          "timestamp_ns": 14946414353353868,
+          "seq": 3,
+          "pid": 236807,
+          "tid": 236807,
+          "device": 7,
+          "rank": 7,
+          "stream": 553059304,
+          "type": "CHECKPOINT",
+          "flags": 8,
+          "correlation_id": 5001,
+          "arg0": 1,
+          "arg1": 1
+        },
+        {
+          "timestamp_ns": 14946414355005252,
+          "seq": 4,
+          "pid": 236807,
+          "tid": 237022,
+          "device": 7,
+          "rank": 7,
+          "stream": 553059304,
+          "type": "DEVICE_CONFIRMED",
+          "flags": 0,
+          "correlation_id": 5001,
+          "arg0": 1,
+          "arg1": 1
+        },
+        {
+          "timestamp_ns": 14946414359961432,
+          "seq": 5,
+          "pid": 236807,
+          "tid": 236807,
+          "device": 7,
+          "rank": 7,
+          "stream": 554031608,
+          "type": "KV_END",
+          "flags": 0,
+          "correlation_id": 9100,
+          "arg0": 1048576,
+          "arg1": 0
+        },
+        {
+          "timestamp_ns": 14946414360016393,
+          "seq": 6,
+          "pid": 236807,
+          "tid": 236807,
+          "device": 7,
+          "rank": 7,
+          "stream": 554031608,
+          "type": "CHECKPOINT",
+          "flags": 1,
+          "correlation_id": 6001,
+          "arg0": 5,
+          "arg1": 1
+        },
+        {
+          "timestamp_ns": 14946414360550331,
+          "seq": 7,
+          "pid": 236807,
+          "tid": 237022,
+          "device": 7,
+          "rank": 7,
+          "stream": 554031608,
+          "type": "DEVICE_CONFIRMED",
+          "flags": 0,
+          "correlation_id": 6001,
+          "arg0": 5,
+          "arg1": 1
+        },
+        {
+          "timestamp_ns": 14946414366819409,
+          "seq": 8,
+          "pid": 236807,
+          "tid": 236807,
+          "device": 7,
+          "rank": 7,
+          "stream": 553059304,
+          "type": "MODEL_END",
+          "flags": 0,
+          "correlation_id": 9002,
+          "arg0": 0,
+          "arg1": 0
+        },
+        {
+          "timestamp_ns": 14946414366865900,
+          "seq": 9,
+          "pid": 236807,
+          "tid": 236807,
+          "device": 7,
+          "rank": 7,
+          "stream": 553059304,
+          "type": "CHECKPOINT",
+          "flags": 1,
+          "correlation_id": 5002,
+          "arg0": 8,
+          "arg1": 2
+        },
+        {
+          "timestamp_ns": 14946414367192315,
+          "seq": 10,
+          "pid": 236807,
+          "tid": 237022,
+          "device": 7,
+          "rank": 7,
+          "stream": 553059304,
+          "type": "DEVICE_CONFIRMED",
+          "flags": 0,
+          "correlation_id": 5002,
+          "arg0": 8,
+          "arg1": 2
+        }
+      ],
+      "ring_wrap_or_loss": false,
+      "device_checkpoint_progress": {
+        "553059304": {
+          "submitted_count": 2,
+          "explicitly_confirmed_count": 2,
+          "submitted_seq": 8,
+          "completed_seq": 8,
+          "confirmed_through": {
+            "timestamp_ns": 14946414366865900,
+            "seq": 9,
+            "pid": 236807,
+            "tid": 236807,
+            "device": 7,
+            "rank": 7,
+            "stream": 553059304,
+            "type": "CHECKPOINT",
+            "flags": 1,
+            "correlation_id": 5002,
+            "arg0": 8,
+            "arg1": 2
+          },
+          "first_unconfirmed": null,
+          "last_unconfirmed": null,
+          "unconfirmed_count": 0,
+          "not_ready_observed": 0,
+          "checkpoint_mappings": [
+            {
+              "submitted_seq": 1,
+              "checkpoint_id": 5001,
+              "generation": 1,
+              "status": "confirmed_exact",
+              "confirmation_record_seq": 4
+            },
+            {
+              "submitted_seq": 8,
+              "checkpoint_id": 5002,
+              "generation": 2,
+              "status": "confirmed_exact",
+              "confirmation_record_seq": 10
+            }
+          ]
+        },
+        "554031608": {
+          "submitted_count": 1,
+          "explicitly_confirmed_count": 1,
+          "submitted_seq": 5,
+          "completed_seq": 5,
+          "confirmed_through": {
+            "timestamp_ns": 14946414360016393,
+            "seq": 6,
+            "pid": 236807,
+            "tid": 236807,
+            "device": 7,
+            "rank": 7,
+            "stream": 554031608,
+            "type": "CHECKPOINT",
+            "flags": 1,
+            "correlation_id": 6001,
+            "arg0": 5,
+            "arg1": 1
+          },
+          "first_unconfirmed": null,
+          "last_unconfirmed": null,
+          "unconfirmed_count": 0,
+          "not_ready_observed": 0,
+          "checkpoint_mappings": [
+            {
+              "submitted_seq": 5,
+              "checkpoint_id": 6001,
+              "generation": 1,
+              "status": "confirmed_exact",
+              "confirmation_record_seq": 7
+            }
+          ]
+        }
+      },
+      "checkpoint_warnings": [],
+      "stale_or_unmatched_confirmations": [],
+      "checkpoint_coverage_warning": false
+    }
+  },
+  "collectives": [],
+  "dependencies": [],
+  "stream_cycles_candidate": [],
+  "errors": [],
+  "limitations": [
+    "All events are host observations unless DEVICE_CONFIRMED is explicitly emitted after a verified device completion.",
+    "A stream dependency cycle is a candidate only; EventRecord placement and device completion require validation.",
+    "A missing collective requires explicit expected ranks and a shared communicator/operation id."
+  ]
+}

@@ -1,0 +1,134 @@
+{
+  "traceEvents": [
+    {
+      "name": "MODEL_END",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946414353166.396,
+      "pid": 7,
+      "tid": 236807,
+      "args": {
+        "stream": 553059304,
+        "correlation_id": 9001,
+        "seq": 1
+      }
+    },
+    {
+      "name": "CHECKPOINT",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946414353333.828,
+      "pid": 7,
+      "tid": 236807,
+      "args": {
+        "stream": 553059304,
+        "correlation_id": 5001,
+        "seq": 2
+      }
+    },
+    {
+      "name": "CHECKPOINT",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946414353353.867,
+      "pid": 7,
+      "tid": 236807,
+      "args": {
+        "stream": 553059304,
+        "correlation_id": 5001,
+        "seq": 3
+      }
+    },
+    {
+      "name": "DEVICE_CONFIRMED",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946414355005.252,
+      "pid": 7,
+      "tid": 237022,
+      "args": {
+        "stream": 553059304,
+        "correlation_id": 5001,
+        "seq": 4
+      }
+    },
+    {
+      "name": "KV_END",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946414359961.432,
+      "pid": 7,
+      "tid": 236807,
+      "args": {
+        "stream": 554031608,
+        "correlation_id": 9100,
+        "seq": 5
+      }
+    },
+    {
+      "name": "CHECKPOINT",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946414360016.393,
+      "pid": 7,
+      "tid": 236807,
+      "args": {
+        "stream": 554031608,
+        "correlation_id": 6001,
+        "seq": 6
+      }
+    },
+    {
+      "name": "DEVICE_CONFIRMED",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946414360550.33,
+      "pid": 7,
+      "tid": 237022,
+      "args": {
+        "stream": 554031608,
+        "correlation_id": 6001,
+        "seq": 7
+      }
+    },
+    {
+      "name": "MODEL_END",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946414366819.408,
+      "pid": 7,
+      "tid": 236807,
+      "args": {
+        "stream": 553059304,
+        "correlation_id": 9002,
+        "seq": 8
+      }
+    },
+    {
+      "name": "CHECKPOINT",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946414366865.9,
+      "pid": 7,
+      "tid": 236807,
+      "args": {
+        "stream": 553059304,
+        "correlation_id": 5002,
+        "seq": 9
+      }
+    },
+    {
+      "name": "DEVICE_CONFIRMED",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946414367192.314,
+      "pid": 7,
+      "tid": 237022,
+      "args": {
+        "stream": 553059304,
+        "correlation_id": 5002,
+        "seq": 10
+      }
+    }
+  ]
+}

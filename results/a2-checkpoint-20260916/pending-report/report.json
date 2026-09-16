@@ -1,0 +1,143 @@
+{
+  "ranks": {
+    "7": {
+      "pid": 236807,
+      "last_sequence": 3,
+      "last_event": {
+        "timestamp_ns": 14946414353353868,
+        "seq": 3,
+        "pid": 236807,
+        "tid": 236807,
+        "device": 7,
+        "rank": 7,
+        "stream": 553059304,
+        "type": "CHECKPOINT",
+        "flags": 8,
+        "correlation_id": 5001,
+        "arg0": 1,
+        "arg1": 1
+      },
+      "last_host_event": {
+        "timestamp_ns": 14946414353333828,
+        "seq": 2,
+        "pid": 236807,
+        "tid": 236807,
+        "device": 7,
+        "rank": 7,
+        "stream": 553059304,
+        "type": "CHECKPOINT",
+        "flags": 1,
+        "correlation_id": 5001,
+        "arg0": 1,
+        "arg1": 1
+      },
+      "last_device_confirmation": null,
+      "outstanding_host_scopes": [],
+      "last_events": [
+        {
+          "timestamp_ns": 14946414353166396,
+          "seq": 1,
+          "pid": 236807,
+          "tid": 236807,
+          "device": 7,
+          "rank": 7,
+          "stream": 553059304,
+          "type": "MODEL_END",
+          "flags": 0,
+          "correlation_id": 9001,
+          "arg0": 0,
+          "arg1": 0
+        },
+        {
+          "timestamp_ns": 14946414353333828,
+          "seq": 2,
+          "pid": 236807,
+          "tid": 236807,
+          "device": 7,
+          "rank": 7,
+          "stream": 553059304,
+          "type": "CHECKPOINT",
+          "flags": 1,
+          "correlation_id": 5001,
+          "arg0": 1,
+          "arg1": 1
+        },
+        {
+          "timestamp_ns": 14946414353353868,
+          "seq": 3,
+          "pid": 236807,
+          "tid": 236807,
+          "device": 7,
+          "rank": 7,
+          "stream": 553059304,
+          "type": "CHECKPOINT",
+          "flags": 8,
+          "correlation_id": 5001,
+          "arg0": 1,
+          "arg1": 1
+        }
+      ],
+      "ring_wrap_or_loss": false,
+      "device_checkpoint_progress": {
+        "553059304": {
+          "submitted_count": 1,
+          "explicitly_confirmed_count": 0,
+          "submitted_seq": 1,
+          "completed_seq": 0,
+          "confirmed_through": null,
+          "first_unconfirmed": {
+            "timestamp_ns": 14946414353333828,
+            "seq": 2,
+            "pid": 236807,
+            "tid": 236807,
+            "device": 7,
+            "rank": 7,
+            "stream": 553059304,
+            "type": "CHECKPOINT",
+            "flags": 1,
+            "correlation_id": 5001,
+            "arg0": 1,
+            "arg1": 1
+          },
+          "last_unconfirmed": {
+            "timestamp_ns": 14946414353333828,
+            "seq": 2,
+            "pid": 236807,
+            "tid": 236807,
+            "device": 7,
+            "rank": 7,
+            "stream": 553059304,
+            "type": "CHECKPOINT",
+            "flags": 1,
+            "correlation_id": 5001,
+            "arg0": 1,
+            "arg1": 1
+          },
+          "unconfirmed_count": 1,
+          "not_ready_observed": 1,
+          "checkpoint_mappings": [
+            {
+              "submitted_seq": 1,
+              "checkpoint_id": 5001,
+              "generation": 1,
+              "status": "unconfirmed",
+              "confirmation_record_seq": null
+            }
+          ]
+        }
+      },
+      "checkpoint_warnings": [],
+      "stale_or_unmatched_confirmations": [],
+      "checkpoint_coverage_warning": false
+    }
+  },
+  "collectives": [],
+  "dependencies": [],
+  "stream_cycles_candidate": [],
+  "errors": [],
+  "limitations": [
+    "All events are host observations unless DEVICE_CONFIRMED is explicitly emitted after a verified device completion.",
+    "A stream dependency cycle is a candidate only; EventRecord placement and device completion require validation.",
+    "A missing collective requires explicit expected ranks and a shared communicator/operation id."
+  ]
+}

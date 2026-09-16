@@ -1,0 +1,7 @@
+Flight events by rank (time is milliseconds since that rank's first retained event)
+seq       +ms         stream       type                  corr          arg0          arg1
+
+RANK 7 pid=236807 events=3
+1              0.000    553059304 MODEL_END                     9001            0            0
+2              0.167    553059304 CHECKPOINT                    5001            1            1
+3              0.187    553059304 CHECKPOINT                    5001            1            1

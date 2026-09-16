@@ -1,0 +1,24 @@
+Ascend Hang Flight Report
+
+HOST PROGRESS
+rank 7: seq=3 pid=236807 last_host=CHECKPOINT corr=5001
+  last device confirmation: none observed
+
+COLLECTIVES (end means Host API returned, not NPU completion)
+
+DEVICE CHECKPOINT PROGRESS
+rank 7 stream 553059304: submitted=1 explicit_confirmations=0 unconfirmed=1
+  submitted_seq=1 completed_seq=0
+  confirmed through: none observed
+  first unconfirmed submitted_seq=1 checkpoint=5001 generation=1
+  unconfirmed submitted_seq interval=1..1
+  explicit NOT_READY observations=1
+
+EVENT DEPENDENCIES
+
+BLOCKING EVIDENCE
+
+LIMITATIONS
+All events are host observations unless DEVICE_CONFIRMED is explicitly emitted after a verified device completion.
+A stream dependency cycle is a candidate only; EventRecord placement and device completion require validation.
+A missing collective requires explicit expected ranks and a shared communicator/operation id.

@@ -1,0 +1,15 @@
+{
+  "profile_roots": [
+    "/tmp/hang-a2-fourcard-profile-20260916/profiles/rank4/rank4_232863_20260916081329068_ascend_pt",
+    "/tmp/hang-a2-fourcard-profile-20260916/profiles/rank5/rank5_232864_20260916081329060_ascend_pt",
+    "/tmp/hang-a2-fourcard-profile-20260916/profiles/rank6/rank6_232865_20260916081329072_ascend_pt",
+    "/tmp/hang-a2-fourcard-profile-20260916/profiles/rank7/rank7_232866_20260916081329083_ascend_pt"
+  ],
+  "kernel_counts": {
+    "4": 7,
+    "5": 7,
+    "6": 7,
+    "7": 7
+  },
+  "analysis_errors": []
+}

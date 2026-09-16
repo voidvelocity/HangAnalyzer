@@ -1,0 +1,96 @@
+Flight events by rank (time is milliseconds since that rank's first retained event)
+seq       +ms         stream       type                  corr          arg0          arg1
+
+RANK 4 pid=232863 events=22
+1              0.000            0 REQUEST_BEGIN                  101       131072            0
+2              0.013            0 SCHEDULER_BEGIN                  1            0            0
+3              0.018            0 MODEL_BEGIN                      1            0            0
+4            336.336    349556424 EVENT_RECORD                  1004            0            0
+5            336.361    350529496 KV_BEGIN                      2004            4        16384
+6            336.657    350529496 EVENT_WAIT                    1004            0            0
+7            338.386    350529496 EVENT_RECORD                  2004            0            0
+8            338.396    350529496 KV_END                        2004            4        16384
+9            338.606    349556424 EVENT_WAIT                    2004            0            0
+10           338.901            0 MODEL_END                        1            0            0
+11           338.907            0 DEVICE_SYNC_BEGIN                1            0            0
+12           369.805            0 DEVICE_SYNC_END                  1            0            0
+13           369.819            0 DEVICE_CONFIRMED                 1        16384            0
+14           376.831            0 HCCL_BEGIN                       1          700            1
+15           863.857            0 HCCL_END                         1          700            1
+16          1039.585            0 DEVICE_CONFIRMED                 1           10            0
+17          1039.594            0 SCHEDULER_END                    1            0            0
+18          1752.903            0 CHECKPOINT                       1            1            0
+19          1752.911            0 SCHEDULER_BEGIN                  2            0            0
+20          1752.923            0 HCCL_BEGIN                       2          700            1
+21          1753.274            0 HCCL_END                         2          700            1
+22          1753.279            0 DEVICE_SYNC_BEGIN                2            0            0
+
+RANK 5 pid=232864 events=22
+1              0.000            0 REQUEST_BEGIN                  101       131072            0
+2              0.016            0 SCHEDULER_BEGIN                  1            0            0
+3              0.021            0 MODEL_BEGIN                      1            0            0
+4            334.249    335525384 EVENT_RECORD                  1005            0            0
+5            334.277    336498056 KV_BEGIN                      2005            5        16384
+6            334.564    336498056 EVENT_WAIT                    1005            0            0
+7            336.316    336498056 EVENT_RECORD                  2005            0            0
+8            336.327    336498056 KV_END                        2005            5        16384
+9            336.517    335525384 EVENT_WAIT                    2005            0            0
+10           336.850            0 MODEL_END                        1            0            0
+11           336.856            0 DEVICE_SYNC_BEGIN                1            0            0
+12           364.975            0 DEVICE_SYNC_END                  1            0            0
+13           364.993            0 DEVICE_CONFIRMED                 1        16384            0
+14           372.299            0 HCCL_BEGIN                       1          700            1
+15           971.753            0 HCCL_END                         1          700            1
+16          1046.626            0 DEVICE_CONFIRMED                 1           10            0
+17          1046.634            0 SCHEDULER_END                    1            0            0
+18          1862.394            0 CHECKPOINT                       1            1            0
+19          1862.400            0 SCHEDULER_BEGIN                  2            0            0
+20          1862.411            0 HCCL_BEGIN                       2          700            1
+21          1862.707            0 HCCL_END                         2          700            1
+22          1862.713            0 DEVICE_SYNC_BEGIN                2            0            0
+
+RANK 6 pid=232865 events=20
+1              0.000            0 REQUEST_BEGIN                  101       131072            0
+2              0.015            0 SCHEDULER_BEGIN                  1            0            0
+3              0.020            0 MODEL_BEGIN                      1            0            0
+4            344.314     67378264 EVENT_RECORD                  1006            0            0
+5            344.348     68350936 KV_BEGIN                      2006            6        16384
+6            344.649     68350936 EVENT_WAIT                    1006            0            0
+7            346.420     68350936 EVENT_RECORD                  2006            0            0
+8            346.429     68350936 KV_END                        2006            6        16384
+9            346.616     67378264 EVENT_WAIT                    2006            0            0
+10           346.954            0 MODEL_END                        1            0            0
+11           346.960            0 DEVICE_SYNC_BEGIN                1            0            0
+12           375.032            0 DEVICE_SYNC_END                  1            0            0
+13           375.045            0 DEVICE_CONFIRMED                 1        16384            0
+14           382.958            0 HCCL_BEGIN                       1          700            1
+15           965.514            0 HCCL_END                         1          700            1
+16          1040.306            0 DEVICE_CONFIRMED                 1           10            0
+17          1040.314            0 SCHEDULER_END                    1            0            0
+18          1759.420            0 CHECKPOINT                       1            1            0
+19          1759.428            0 SCHEDULER_BEGIN                  2            0            0
+20          1759.437     68350936 KV_BEGIN                      3006            6         4096
+
+RANK 7 pid=232866 events=22
+1              0.000            0 REQUEST_BEGIN                  101       131072            0
+2              0.015            0 SCHEDULER_BEGIN                  1            0            0
+3              0.020            0 MODEL_BEGIN                      1            0            0
+4            341.726    304523928 EVENT_RECORD                  1007            0            0
+5            341.754    305496776 KV_BEGIN                      2007            7        16384
+6            342.023    305496776 EVENT_WAIT                    1007            0            0
+7            343.549    305496776 EVENT_RECORD                  2007            0            0
+8            343.557    305496776 KV_END                        2007            7        16384
+9            343.730    304523928 EVENT_WAIT                    2007            0            0
+10           343.996            0 MODEL_END                        1            0            0
+11           344.002            0 DEVICE_SYNC_BEGIN                1            0            0
+12           373.434            0 DEVICE_SYNC_END                  1            0            0
+13           373.447            0 DEVICE_CONFIRMED                 1        16384            0
+14           380.527            0 HCCL_BEGIN                       1          700            1
+15           949.355            0 HCCL_END                         1          700            1
+16          1027.020            0 DEVICE_CONFIRMED                 1           10            0
+17          1027.028            0 SCHEDULER_END                    1            0            0
+18          1807.221            0 CHECKPOINT                       1            1            0
+19          1807.228            0 SCHEDULER_BEGIN                  2            0            0
+20          1807.239            0 HCCL_BEGIN                       2          700            1
+21          1807.605            0 HCCL_END                         2          700            1
+22          1807.611            0 DEVICE_SYNC_BEGIN                2            0            0

@@ -1,0 +1,13 @@
+{
+  "devices": [
+    4,
+    5,
+    6,
+    7
+  ],
+  "missing_rank": 6,
+  "communicator_id": 700,
+  "successful_operation": 1,
+  "hanging_operation": 2,
+  "note": "rank 6 is held at a synthetic host KV gate; other ranks enter a real HCCL all_reduce"
+}

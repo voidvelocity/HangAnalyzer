@@ -1,0 +1,1460 @@
+{
+  "traceEvents": [
+    {
+      "name": "REQUEST_BEGIN",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946540935620.506,
+      "pid": 4,
+      "tid": 237589,
+      "args": {
+        "stream": 0,
+        "correlation_id": 101,
+        "seq": 1
+      }
+    },
+    {
+      "name": "SCHEDULER_BEGIN",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946540935631.035,
+      "pid": 4,
+      "tid": 237589,
+      "args": {
+        "stream": 0,
+        "correlation_id": 1,
+        "seq": 2
+      }
+    },
+    {
+      "name": "MODEL_BEGIN",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946540935637.006,
+      "pid": 4,
+      "tid": 237589,
+      "args": {
+        "stream": 713800792,
+        "correlation_id": 1,
+        "seq": 3
+      }
+    },
+    {
+      "name": "EVENT_RECORD",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946541270999.643,
+      "pid": 4,
+      "tid": 237589,
+      "args": {
+        "stream": 713800792,
+        "correlation_id": 1004,
+        "seq": 4
+      }
+    },
+    {
+      "name": "KV_BEGIN",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946541271042.295,
+      "pid": 4,
+      "tid": 237589,
+      "args": {
+        "stream": 714773864,
+        "correlation_id": 2004,
+        "seq": 5
+      }
+    },
+    {
+      "name": "EVENT_WAIT",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946541271258.367,
+      "pid": 4,
+      "tid": 237589,
+      "args": {
+        "stream": 714773864,
+        "correlation_id": 1004,
+        "seq": 6
+      }
+    },
+    {
+      "name": "EVENT_RECORD",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946541272937.37,
+      "pid": 4,
+      "tid": 237589,
+      "args": {
+        "stream": 714773864,
+        "correlation_id": 2004,
+        "seq": 7
+      }
+    },
+    {
+      "name": "KV_END",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946541272949.102,
+      "pid": 4,
+      "tid": 237589,
+      "args": {
+        "stream": 714773864,
+        "correlation_id": 2004,
+        "seq": 8
+      }
+    },
+    {
+      "name": "CHECKPOINT",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946541273122.553,
+      "pid": 4,
+      "tid": 237589,
+      "args": {
+        "stream": 714773864,
+        "correlation_id": 6001,
+        "seq": 9
+      }
+    },
+    {
+      "name": "EVENT_WAIT",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946541273268.164,
+      "pid": 4,
+      "tid": 237589,
+      "args": {
+        "stream": 713800792,
+        "correlation_id": 2004,
+        "seq": 10
+      }
+    },
+    {
+      "name": "MODEL_END",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946541273581.68,
+      "pid": 4,
+      "tid": 237589,
+      "args": {
+        "stream": 713800792,
+        "correlation_id": 1,
+        "seq": 11
+      }
+    },
+    {
+      "name": "CHECKPOINT",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946541273631.46,
+      "pid": 4,
+      "tid": 237589,
+      "args": {
+        "stream": 713800792,
+        "correlation_id": 5001,
+        "seq": 12
+      }
+    },
+    {
+      "name": "DEVICE_SYNC_BEGIN",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946541273643.64,
+      "pid": 4,
+      "tid": 237589,
+      "args": {
+        "stream": 0,
+        "correlation_id": 1,
+        "seq": 13
+      }
+    },
+    {
+      "name": "DEVICE_CONFIRMED",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946541273891.873,
+      "pid": 4,
+      "tid": 237697,
+      "args": {
+        "stream": 714773864,
+        "correlation_id": 6001,
+        "seq": 14
+      }
+    },
+    {
+      "name": "DEVICE_CONFIRMED",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946541273896.443,
+      "pid": 4,
+      "tid": 237697,
+      "args": {
+        "stream": 713800792,
+        "correlation_id": 5001,
+        "seq": 15
+      }
+    },
+    {
+      "name": "DEVICE_SYNC_END",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946541302309.146,
+      "pid": 4,
+      "tid": 237589,
+      "args": {
+        "stream": 0,
+        "correlation_id": 1,
+        "seq": 16
+      }
+    },
+    {
+      "name": "DEVICE_CONFIRMED",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946541302328.268,
+      "pid": 4,
+      "tid": 237589,
+      "args": {
+        "stream": 0,
+        "correlation_id": 1,
+        "seq": 17
+      }
+    },
+    {
+      "name": "HCCL_BEGIN",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946541309876.623,
+      "pid": 4,
+      "tid": 237589,
+      "args": {
+        "stream": 705129000,
+        "correlation_id": 1,
+        "seq": 18
+      }
+    },
+    {
+      "name": "HCCL_END",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946541797073.875,
+      "pid": 4,
+      "tid": 237589,
+      "args": {
+        "stream": 705129000,
+        "correlation_id": 1,
+        "seq": 19
+      }
+    },
+    {
+      "name": "CHECKPOINT",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946541797123.615,
+      "pid": 4,
+      "tid": 237589,
+      "args": {
+        "stream": 705129000,
+        "correlation_id": 7101,
+        "seq": 20
+      }
+    },
+    {
+      "name": "DEVICE_CONFIRMED",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946541797874.156,
+      "pid": 4,
+      "tid": 237697,
+      "args": {
+        "stream": 705129000,
+        "correlation_id": 7101,
+        "seq": 21
+      }
+    },
+    {
+      "name": "DEVICE_CONFIRMED",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946541977622.926,
+      "pid": 4,
+      "tid": 237589,
+      "args": {
+        "stream": 0,
+        "correlation_id": 1,
+        "seq": 22
+      }
+    },
+    {
+      "name": "SCHEDULER_END",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946541980364.814,
+      "pid": 4,
+      "tid": 237589,
+      "args": {
+        "stream": 0,
+        "correlation_id": 1,
+        "seq": 23
+      }
+    },
+    {
+      "name": "SCHEDULER_BEGIN",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946541980371.645,
+      "pid": 4,
+      "tid": 237589,
+      "args": {
+        "stream": 0,
+        "correlation_id": 2,
+        "seq": 24
+      }
+    },
+    {
+      "name": "HCCL_BEGIN",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946541980380.926,
+      "pid": 4,
+      "tid": 237589,
+      "args": {
+        "stream": 705129000,
+        "correlation_id": 2,
+        "seq": 25
+      }
+    },
+    {
+      "name": "HCCL_END",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946541980743.64,
+      "pid": 4,
+      "tid": 237589,
+      "args": {
+        "stream": 705129000,
+        "correlation_id": 2,
+        "seq": 26
+      }
+    },
+    {
+      "name": "CHECKPOINT",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946541980784.441,
+      "pid": 4,
+      "tid": 237589,
+      "args": {
+        "stream": 705129000,
+        "correlation_id": 7102,
+        "seq": 27
+      }
+    },
+    {
+      "name": "DEVICE_SYNC_BEGIN",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946541980794.191,
+      "pid": 4,
+      "tid": 237589,
+      "args": {
+        "stream": 0,
+        "correlation_id": 2,
+        "seq": 28
+      }
+    },
+    {
+      "name": "DEVICE_CONFIRMED",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946541981281.639,
+      "pid": 4,
+      "tid": 237697,
+      "args": {
+        "stream": 705129000,
+        "correlation_id": 7102,
+        "seq": 29
+      }
+    },
+    {
+      "name": "REQUEST_BEGIN",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946540934172.904,
+      "pid": 5,
+      "tid": 237590,
+      "args": {
+        "stream": 0,
+        "correlation_id": 101,
+        "seq": 1
+      }
+    },
+    {
+      "name": "SCHEDULER_BEGIN",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946540934185.564,
+      "pid": 5,
+      "tid": 237590,
+      "args": {
+        "stream": 0,
+        "correlation_id": 1,
+        "seq": 2
+      }
+    },
+    {
+      "name": "MODEL_BEGIN",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946540934190.967,
+      "pid": 5,
+      "tid": 237590,
+      "args": {
+        "stream": 84821352,
+        "correlation_id": 1,
+        "seq": 3
+      }
+    },
+    {
+      "name": "EVENT_RECORD",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946541271101.854,
+      "pid": 5,
+      "tid": 237590,
+      "args": {
+        "stream": 84821352,
+        "correlation_id": 1005,
+        "seq": 4
+      }
+    },
+    {
+      "name": "KV_BEGIN",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946541271128.475,
+      "pid": 5,
+      "tid": 237590,
+      "args": {
+        "stream": 85794024,
+        "correlation_id": 2005,
+        "seq": 5
+      }
+    },
+    {
+      "name": "EVENT_WAIT",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946541271319.299,
+      "pid": 5,
+      "tid": 237590,
+      "args": {
+        "stream": 85794024,
+        "correlation_id": 1005,
+        "seq": 6
+      }
+    },
+    {
+      "name": "EVENT_RECORD",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946541272937.02,
+      "pid": 5,
+      "tid": 237590,
+      "args": {
+        "stream": 85794024,
+        "correlation_id": 2005,
+        "seq": 7
+      }
+    },
+    {
+      "name": "KV_END",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946541272947.41,
+      "pid": 5,
+      "tid": 237590,
+      "args": {
+        "stream": 85794024,
+        "correlation_id": 2005,
+        "seq": 8
+      }
+    },
+    {
+      "name": "CHECKPOINT",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946541273122.242,
+      "pid": 5,
+      "tid": 237590,
+      "args": {
+        "stream": 85794024,
+        "correlation_id": 6001,
+        "seq": 9
+      }
+    },
+    {
+      "name": "EVENT_WAIT",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946541273269.074,
+      "pid": 5,
+      "tid": 237590,
+      "args": {
+        "stream": 84821352,
+        "correlation_id": 2005,
+        "seq": 10
+      }
+    },
+    {
+      "name": "DEVICE_CONFIRMED",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946541273397.518,
+      "pid": 5,
+      "tid": 237688,
+      "args": {
+        "stream": 85794024,
+        "correlation_id": 6001,
+        "seq": 11
+      }
+    },
+    {
+      "name": "MODEL_END",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946541273582.04,
+      "pid": 5,
+      "tid": 237590,
+      "args": {
+        "stream": 84821352,
+        "correlation_id": 1,
+        "seq": 12
+      }
+    },
+    {
+      "name": "CHECKPOINT",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946541273632.08,
+      "pid": 5,
+      "tid": 237590,
+      "args": {
+        "stream": 84821352,
+        "correlation_id": 5001,
+        "seq": 13
+      }
+    },
+    {
+      "name": "DEVICE_SYNC_BEGIN",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946541273641.28,
+      "pid": 5,
+      "tid": 237590,
+      "args": {
+        "stream": 0,
+        "correlation_id": 1,
+        "seq": 14
+      }
+    },
+    {
+      "name": "DEVICE_CONFIRMED",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946541274461.512,
+      "pid": 5,
+      "tid": 237688,
+      "args": {
+        "stream": 84821352,
+        "correlation_id": 5001,
+        "seq": 15
+      }
+    },
+    {
+      "name": "DEVICE_SYNC_END",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946541302982.637,
+      "pid": 5,
+      "tid": 237590,
+      "args": {
+        "stream": 0,
+        "correlation_id": 1,
+        "seq": 16
+      }
+    },
+    {
+      "name": "DEVICE_CONFIRMED",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946541302997.986,
+      "pid": 5,
+      "tid": 237590,
+      "args": {
+        "stream": 0,
+        "correlation_id": 1,
+        "seq": 17
+      }
+    },
+    {
+      "name": "HCCL_BEGIN",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946541309978.916,
+      "pid": 5,
+      "tid": 237590,
+      "args": {
+        "stream": 76149592,
+        "correlation_id": 1,
+        "seq": 18
+      }
+    },
+    {
+      "name": "HCCL_END",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946541900348.81,
+      "pid": 5,
+      "tid": 237590,
+      "args": {
+        "stream": 76149592,
+        "correlation_id": 1,
+        "seq": 19
+      }
+    },
+    {
+      "name": "CHECKPOINT",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946541900394.41,
+      "pid": 5,
+      "tid": 237590,
+      "args": {
+        "stream": 76149592,
+        "correlation_id": 7101,
+        "seq": 20
+      }
+    },
+    {
+      "name": "DEVICE_CONFIRMED",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946541900449.611,
+      "pid": 5,
+      "tid": 237688,
+      "args": {
+        "stream": 76149592,
+        "correlation_id": 7101,
+        "seq": 21
+      }
+    },
+    {
+      "name": "DEVICE_CONFIRMED",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946541977622.676,
+      "pid": 5,
+      "tid": 237590,
+      "args": {
+        "stream": 0,
+        "correlation_id": 1,
+        "seq": 22
+      }
+    },
+    {
+      "name": "SCHEDULER_END",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946541980435.365,
+      "pid": 5,
+      "tid": 237590,
+      "args": {
+        "stream": 0,
+        "correlation_id": 1,
+        "seq": 23
+      }
+    },
+    {
+      "name": "SCHEDULER_BEGIN",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946541980441.705,
+      "pid": 5,
+      "tid": 237590,
+      "args": {
+        "stream": 0,
+        "correlation_id": 2,
+        "seq": 24
+      }
+    },
+    {
+      "name": "HCCL_BEGIN",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946541980451.686,
+      "pid": 5,
+      "tid": 237590,
+      "args": {
+        "stream": 76149592,
+        "correlation_id": 2,
+        "seq": 25
+      }
+    },
+    {
+      "name": "HCCL_END",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946541980744.36,
+      "pid": 5,
+      "tid": 237590,
+      "args": {
+        "stream": 76149592,
+        "correlation_id": 2,
+        "seq": 26
+      }
+    },
+    {
+      "name": "CHECKPOINT",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946541980779.531,
+      "pid": 5,
+      "tid": 237590,
+      "args": {
+        "stream": 76149592,
+        "correlation_id": 7102,
+        "seq": 27
+      }
+    },
+    {
+      "name": "DEVICE_SYNC_BEGIN",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946541980788.63,
+      "pid": 5,
+      "tid": 237590,
+      "args": {
+        "stream": 0,
+        "correlation_id": 2,
+        "seq": 28
+      }
+    },
+    {
+      "name": "DEVICE_CONFIRMED",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946541981612.322,
+      "pid": 5,
+      "tid": 237688,
+      "args": {
+        "stream": 76149592,
+        "correlation_id": 7102,
+        "seq": 29
+      }
+    },
+    {
+      "name": "REQUEST_BEGIN",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946540922468.52,
+      "pid": 6,
+      "tid": 237591,
+      "args": {
+        "stream": 0,
+        "correlation_id": 101,
+        "seq": 1
+      }
+    },
+    {
+      "name": "SCHEDULER_BEGIN",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946540922479.629,
+      "pid": 6,
+      "tid": 237591,
+      "args": {
+        "stream": 0,
+        "correlation_id": 1,
+        "seq": 2
+      }
+    },
+    {
+      "name": "MODEL_BEGIN",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946540922484.94,
+      "pid": 6,
+      "tid": 237591,
+      "args": {
+        "stream": 286521608,
+        "correlation_id": 1,
+        "seq": 3
+      }
+    },
+    {
+      "name": "EVENT_RECORD",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946541255180.76,
+      "pid": 6,
+      "tid": 237591,
+      "args": {
+        "stream": 286521608,
+        "correlation_id": 1006,
+        "seq": 4
+      }
+    },
+    {
+      "name": "KV_BEGIN",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946541255218.379,
+      "pid": 6,
+      "tid": 237591,
+      "args": {
+        "stream": 287494280,
+        "correlation_id": 2006,
+        "seq": 5
+      }
+    },
+    {
+      "name": "EVENT_WAIT",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946541255454.531,
+      "pid": 6,
+      "tid": 237591,
+      "args": {
+        "stream": 287494280,
+        "correlation_id": 1006,
+        "seq": 6
+      }
+    },
+    {
+      "name": "EVENT_RECORD",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946541257001.074,
+      "pid": 6,
+      "tid": 237591,
+      "args": {
+        "stream": 287494280,
+        "correlation_id": 2006,
+        "seq": 7
+      }
+    },
+    {
+      "name": "KV_END",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946541257010.564,
+      "pid": 6,
+      "tid": 237591,
+      "args": {
+        "stream": 287494280,
+        "correlation_id": 2006,
+        "seq": 8
+      }
+    },
+    {
+      "name": "CHECKPOINT",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946541257174.977,
+      "pid": 6,
+      "tid": 237591,
+      "args": {
+        "stream": 287494280,
+        "correlation_id": 6001,
+        "seq": 9
+      }
+    },
+    {
+      "name": "EVENT_WAIT",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946541257292.87,
+      "pid": 6,
+      "tid": 237591,
+      "args": {
+        "stream": 286521608,
+        "correlation_id": 2006,
+        "seq": 10
+      }
+    },
+    {
+      "name": "MODEL_END",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946541257597.902,
+      "pid": 6,
+      "tid": 237591,
+      "args": {
+        "stream": 286521608,
+        "correlation_id": 1,
+        "seq": 11
+      }
+    },
+    {
+      "name": "CHECKPOINT",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946541257643.264,
+      "pid": 6,
+      "tid": 237591,
+      "args": {
+        "stream": 286521608,
+        "correlation_id": 5001,
+        "seq": 12
+      }
+    },
+    {
+      "name": "DEVICE_SYNC_BEGIN",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946541257653.693,
+      "pid": 6,
+      "tid": 237591,
+      "args": {
+        "stream": 0,
+        "correlation_id": 1,
+        "seq": 13
+      }
+    },
+    {
+      "name": "DEVICE_CONFIRMED",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946541258133.15,
+      "pid": 6,
+      "tid": 237696,
+      "args": {
+        "stream": 287494280,
+        "correlation_id": 6001,
+        "seq": 14
+      }
+    },
+    {
+      "name": "DEVICE_CONFIRMED",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946541258137.3,
+      "pid": 6,
+      "tid": 237696,
+      "args": {
+        "stream": 286521608,
+        "correlation_id": 5001,
+        "seq": 15
+      }
+    },
+    {
+      "name": "DEVICE_SYNC_END",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946541287983.324,
+      "pid": 6,
+      "tid": 237591,
+      "args": {
+        "stream": 0,
+        "correlation_id": 1,
+        "seq": 16
+      }
+    },
+    {
+      "name": "DEVICE_CONFIRMED",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946541287997.404,
+      "pid": 6,
+      "tid": 237591,
+      "args": {
+        "stream": 0,
+        "correlation_id": 1,
+        "seq": 17
+      }
+    },
+    {
+      "name": "HCCL_BEGIN",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946541295140.914,
+      "pid": 6,
+      "tid": 237591,
+      "args": {
+        "stream": 277849816,
+        "correlation_id": 1,
+        "seq": 18
+      }
+    },
+    {
+      "name": "HCCL_END",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946541894271.174,
+      "pid": 6,
+      "tid": 237591,
+      "args": {
+        "stream": 277849816,
+        "correlation_id": 1,
+        "seq": 19
+      }
+    },
+    {
+      "name": "CHECKPOINT",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946541894324.805,
+      "pid": 6,
+      "tid": 237591,
+      "args": {
+        "stream": 277849816,
+        "correlation_id": 7101,
+        "seq": 20
+      }
+    },
+    {
+      "name": "DEVICE_CONFIRMED",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946541895160.836,
+      "pid": 6,
+      "tid": 237696,
+      "args": {
+        "stream": 277849816,
+        "correlation_id": 7101,
+        "seq": 21
+      }
+    },
+    {
+      "name": "DEVICE_CONFIRMED",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946541978500.389,
+      "pid": 6,
+      "tid": 237591,
+      "args": {
+        "stream": 0,
+        "correlation_id": 1,
+        "seq": 22
+      }
+    },
+    {
+      "name": "SCHEDULER_END",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946541981281.018,
+      "pid": 6,
+      "tid": 237591,
+      "args": {
+        "stream": 0,
+        "correlation_id": 1,
+        "seq": 23
+      }
+    },
+    {
+      "name": "SCHEDULER_BEGIN",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946541981287.447,
+      "pid": 6,
+      "tid": 237591,
+      "args": {
+        "stream": 0,
+        "correlation_id": 2,
+        "seq": 24
+      }
+    },
+    {
+      "name": "KV_BEGIN",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946541981297.027,
+      "pid": 6,
+      "tid": 237591,
+      "args": {
+        "stream": 287494280,
+        "correlation_id": 3006,
+        "seq": 25
+      }
+    },
+    {
+      "name": "REQUEST_BEGIN",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946540936635.14,
+      "pid": 7,
+      "tid": 237592,
+      "args": {
+        "stream": 0,
+        "correlation_id": 101,
+        "seq": 1
+      }
+    },
+    {
+      "name": "SCHEDULER_BEGIN",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946540936650.94,
+      "pid": 7,
+      "tid": 237592,
+      "args": {
+        "stream": 0,
+        "correlation_id": 1,
+        "seq": 2
+      }
+    },
+    {
+      "name": "MODEL_BEGIN",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946540936656.32,
+      "pid": 7,
+      "tid": 237592,
+      "args": {
+        "stream": 181771352,
+        "correlation_id": 1,
+        "seq": 3
+      }
+    },
+    {
+      "name": "EVENT_RECORD",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946541277258.252,
+      "pid": 7,
+      "tid": 237592,
+      "args": {
+        "stream": 181771352,
+        "correlation_id": 1007,
+        "seq": 4
+      }
+    },
+    {
+      "name": "KV_BEGIN",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946541277293.963,
+      "pid": 7,
+      "tid": 237592,
+      "args": {
+        "stream": 182744024,
+        "correlation_id": 2007,
+        "seq": 5
+      }
+    },
+    {
+      "name": "EVENT_WAIT",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946541277488.846,
+      "pid": 7,
+      "tid": 237592,
+      "args": {
+        "stream": 182744024,
+        "correlation_id": 1007,
+        "seq": 6
+      }
+    },
+    {
+      "name": "EVENT_RECORD",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946541278868.865,
+      "pid": 7,
+      "tid": 237592,
+      "args": {
+        "stream": 182744024,
+        "correlation_id": 2007,
+        "seq": 7
+      }
+    },
+    {
+      "name": "KV_END",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946541278878.926,
+      "pid": 7,
+      "tid": 237592,
+      "args": {
+        "stream": 182744024,
+        "correlation_id": 2007,
+        "seq": 8
+      }
+    },
+    {
+      "name": "CHECKPOINT",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946541279031.787,
+      "pid": 7,
+      "tid": 237592,
+      "args": {
+        "stream": 182744024,
+        "correlation_id": 6001,
+        "seq": 9
+      }
+    },
+    {
+      "name": "EVENT_WAIT",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946541279155.53,
+      "pid": 7,
+      "tid": 237592,
+      "args": {
+        "stream": 181771352,
+        "correlation_id": 2007,
+        "seq": 10
+      }
+    },
+    {
+      "name": "DEVICE_CONFIRMED",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946541279181.04,
+      "pid": 7,
+      "tid": 237689,
+      "args": {
+        "stream": 182744024,
+        "correlation_id": 6001,
+        "seq": 11
+      }
+    },
+    {
+      "name": "MODEL_END",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946541279429.293,
+      "pid": 7,
+      "tid": 237592,
+      "args": {
+        "stream": 181771352,
+        "correlation_id": 1,
+        "seq": 12
+      }
+    },
+    {
+      "name": "CHECKPOINT",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946541279479.623,
+      "pid": 7,
+      "tid": 237592,
+      "args": {
+        "stream": 181771352,
+        "correlation_id": 5001,
+        "seq": 13
+      }
+    },
+    {
+      "name": "DEVICE_SYNC_BEGIN",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946541279490.992,
+      "pid": 7,
+      "tid": 237592,
+      "args": {
+        "stream": 0,
+        "correlation_id": 1,
+        "seq": 14
+      }
+    },
+    {
+      "name": "DEVICE_CONFIRMED",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946541280246.773,
+      "pid": 7,
+      "tid": 237689,
+      "args": {
+        "stream": 181771352,
+        "correlation_id": 5001,
+        "seq": 15
+      }
+    },
+    {
+      "name": "DEVICE_SYNC_END",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946541310295.41,
+      "pid": 7,
+      "tid": 237592,
+      "args": {
+        "stream": 0,
+        "correlation_id": 1,
+        "seq": 16
+      }
+    },
+    {
+      "name": "DEVICE_CONFIRMED",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946541310307.371,
+      "pid": 7,
+      "tid": 237592,
+      "args": {
+        "stream": 0,
+        "correlation_id": 1,
+        "seq": 17
+      }
+    },
+    {
+      "name": "HCCL_BEGIN",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946541317359.81,
+      "pid": 7,
+      "tid": 237592,
+      "args": {
+        "stream": 173099560,
+        "correlation_id": 1,
+        "seq": 18
+      }
+    },
+    {
+      "name": "HCCL_END",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946541894085.8,
+      "pid": 7,
+      "tid": 237592,
+      "args": {
+        "stream": 173099560,
+        "correlation_id": 1,
+        "seq": 19
+      }
+    },
+    {
+      "name": "CHECKPOINT",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946541894136.643,
+      "pid": 7,
+      "tid": 237592,
+      "args": {
+        "stream": 173099560,
+        "correlation_id": 7101,
+        "seq": 20
+      }
+    },
+    {
+      "name": "DEVICE_CONFIRMED",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946541894830.043,
+      "pid": 7,
+      "tid": 237689,
+      "args": {
+        "stream": 173099560,
+        "correlation_id": 7101,
+        "seq": 21
+      }
+    },
+    {
+      "name": "DEVICE_CONFIRMED",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946541978501.158,
+      "pid": 7,
+      "tid": 237592,
+      "args": {
+        "stream": 0,
+        "correlation_id": 1,
+        "seq": 22
+      }
+    },
+    {
+      "name": "SCHEDULER_END",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946541981280.168,
+      "pid": 7,
+      "tid": 237592,
+      "args": {
+        "stream": 0,
+        "correlation_id": 1,
+        "seq": 23
+      }
+    },
+    {
+      "name": "SCHEDULER_BEGIN",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946541981286.799,
+      "pid": 7,
+      "tid": 237592,
+      "args": {
+        "stream": 0,
+        "correlation_id": 2,
+        "seq": 24
+      }
+    },
+    {
+      "name": "HCCL_BEGIN",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946541981297.299,
+      "pid": 7,
+      "tid": 237592,
+      "args": {
+        "stream": 173099560,
+        "correlation_id": 2,
+        "seq": 25
+      }
+    },
+    {
+      "name": "HCCL_END",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946541981643.533,
+      "pid": 7,
+      "tid": 237592,
+      "args": {
+        "stream": 173099560,
+        "correlation_id": 2,
+        "seq": 26
+      }
+    },
+    {
+      "name": "CHECKPOINT",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946541981683.475,
+      "pid": 7,
+      "tid": 237592,
+      "args": {
+        "stream": 173099560,
+        "correlation_id": 7102,
+        "seq": 27
+      }
+    },
+    {
+      "name": "DEVICE_SYNC_BEGIN",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946541981692.373,
+      "pid": 7,
+      "tid": 237592,
+      "args": {
+        "stream": 0,
+        "correlation_id": 2,
+        "seq": 28
+      }
+    },
+    {
+      "name": "DEVICE_CONFIRMED",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946541982339.184,
+      "pid": 7,
+      "tid": 237689,
+      "args": {
+        "stream": 173099560,
+        "correlation_id": 7102,
+        "seq": 29
+      }
+    }
+  ]
+}

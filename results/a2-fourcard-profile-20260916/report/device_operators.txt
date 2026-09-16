@@ -1,0 +1,39 @@
+Ascend device kernels from completed profiler windows
+These are executed device kernels recorded before the controlled hang.
+They do not prove completion of tasks submitted after profiler stop.
+
+RANK 4: device_kernel_count=7
+  device=4 start_us=1789546409156862.064 duration_us=4.140 name=aclnnInplaceNormal_DSARandomNormal_DSARandomNormal
+  device=4 start_us=1789546409157755.644 duration_us=2.800 name=aclnnInplaceNormal_DSARandomNormal_DSARandomNormal
+  device=4 start_us=1789546409521133.944 duration_us=10.060 name=aclnnMatmul_MatMulCommon_MatMulV2
+  device=4 start_us=1789546409521717.824 duration_us=5.300 name=aclnnMatmul_MatMulCommon_MatMulV2
+  device=4 start_us=1789546409525048.824 duration_us=1.620 name=aclnnInplaceOne_OnesLikeAiCore_OnesLike
+  device=4 start_us=1789546409531521.444 duration_us=2.340 name=aclnnMuls_MulAiCore_Mul
+  device=4 start_us=1789546410155487.864 duration_us=3989.420 name=hcom_allReduce__612_0_1
+
+RANK 5: device_kernel_count=7
+  device=5 start_us=1789546409150524.290 duration_us=3.880 name=aclnnInplaceNormal_DSARandomNormal_DSARandomNormal
+  device=5 start_us=1789546409151349.670 duration_us=2.740 name=aclnnInplaceNormal_DSARandomNormal_DSARandomNormal
+  device=5 start_us=1789546409509159.370 duration_us=9.520 name=aclnnMatmul_MatMulCommon_MatMulV2
+  device=5 start_us=1789546409509811.350 duration_us=5.440 name=aclnnMatmul_MatMulCommon_MatMulV2
+  device=5 start_us=1789546409513380.190 duration_us=2.760 name=aclnnInplaceOne_OnesLikeAiCore_OnesLike
+  device=5 start_us=1789546409519704.750 duration_us=2.360 name=aclnnMuls_MulAiCore_Mul
+  device=5 start_us=1789546410159224.130 duration_us=248.760 name=hcom_allReduce__612_0_1
+
+RANK 6: device_kernel_count=7
+  device=6 start_us=1789546409158085.050 duration_us=4.100 name=aclnnInplaceNormal_DSARandomNormal_DSARandomNormal
+  device=6 start_us=1789546409158829.810 duration_us=2.800 name=aclnnInplaceNormal_DSARandomNormal_DSARandomNormal
+  device=6 start_us=1789546409526675.250 duration_us=10.100 name=aclnnMatmul_MatMulCommon_MatMulV2
+  device=6 start_us=1789546409527284.290 duration_us=5.320 name=aclnnMatmul_MatMulCommon_MatMulV2
+  device=6 start_us=1789546409530655.450 duration_us=1.940 name=aclnnInplaceOne_OnesLikeAiCore_OnesLike
+  device=6 start_us=1789546409537718.910 duration_us=2.380 name=aclnnMuls_MulAiCore_Mul
+  device=6 start_us=1789546410159090.870 duration_us=389.620 name=hcom_allReduce__612_0_1
+
+RANK 7: device_kernel_count=7
+  device=7 start_us=1789546409171854.156 duration_us=4.100 name=aclnnInplaceNormal_DSARandomNormal_DSARandomNormal
+  device=7 start_us=1789546409173200.536 duration_us=2.800 name=aclnnInplaceNormal_DSARandomNormal_DSARandomNormal
+  device=7 start_us=1789546409538321.496 duration_us=9.580 name=aclnnMatmul_MatMulCommon_MatMulV2
+  device=7 start_us=1789546409538928.416 duration_us=5.320 name=aclnnMatmul_MatMulCommon_MatMulV2
+  device=7 start_us=1789546409542374.456 duration_us=1.960 name=aclnnInplaceOne_OnesLikeAiCore_OnesLike
+  device=7 start_us=1789546409548693.176 duration_us=2.660 name=aclnnMuls_MulAiCore_Mul
+  device=7 start_us=1789546410159461.076 duration_us=19.620 name=hcom_allReduce__612_0_1

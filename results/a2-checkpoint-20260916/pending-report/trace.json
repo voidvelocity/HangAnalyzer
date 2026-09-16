@@ -1,0 +1,43 @@
+{
+  "traceEvents": [
+    {
+      "name": "MODEL_END",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946414353166.396,
+      "pid": 7,
+      "tid": 236807,
+      "args": {
+        "stream": 553059304,
+        "correlation_id": 9001,
+        "seq": 1
+      }
+    },
+    {
+      "name": "CHECKPOINT",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946414353333.828,
+      "pid": 7,
+      "tid": 236807,
+      "args": {
+        "stream": 553059304,
+        "correlation_id": 5001,
+        "seq": 2
+      }
+    },
+    {
+      "name": "CHECKPOINT",
+      "ph": "i",
+      "s": "t",
+      "ts": 14946414353353.867,
+      "pid": 7,
+      "tid": 236807,
+      "args": {
+        "stream": 553059304,
+        "correlation_id": 5001,
+        "seq": 3
+      }
+    }
+  ]
+}

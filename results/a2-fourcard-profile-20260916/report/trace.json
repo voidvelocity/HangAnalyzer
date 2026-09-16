@@ -1,0 +1,1122 @@
+{
+  "traceEvents": [
+    {
+      "name": "REQUEST_BEGIN",
+      "ph": "i",
+      "s": "t",
+      "ts": 14944091617561.186,
+      "pid": 4,
+      "tid": 232863,
+      "args": {
+        "stream": 0,
+        "correlation_id": 101,
+        "seq": 1
+      }
+    },
+    {
+      "name": "SCHEDULER_BEGIN",
+      "ph": "i",
+      "s": "t",
+      "ts": 14944091617574.195,
+      "pid": 4,
+      "tid": 232863,
+      "args": {
+        "stream": 0,
+        "correlation_id": 1,
+        "seq": 2
+      }
+    },
+    {
+      "name": "MODEL_BEGIN",
+      "ph": "i",
+      "s": "t",
+      "ts": 14944091617579.355,
+      "pid": 4,
+      "tid": 232863,
+      "args": {
+        "stream": 0,
+        "correlation_id": 1,
+        "seq": 3
+      }
+    },
+    {
+      "name": "EVENT_RECORD",
+      "ph": "i",
+      "s": "t",
+      "ts": 14944091953897.516,
+      "pid": 4,
+      "tid": 232863,
+      "args": {
+        "stream": 349556424,
+        "correlation_id": 1004,
+        "seq": 4
+      }
+    },
+    {
+      "name": "KV_BEGIN",
+      "ph": "i",
+      "s": "t",
+      "ts": 14944091953922.057,
+      "pid": 4,
+      "tid": 232863,
+      "args": {
+        "stream": 350529496,
+        "correlation_id": 2004,
+        "seq": 5
+      }
+    },
+    {
+      "name": "EVENT_WAIT",
+      "ph": "i",
+      "s": "t",
+      "ts": 14944091954217.84,
+      "pid": 4,
+      "tid": 232863,
+      "args": {
+        "stream": 350529496,
+        "correlation_id": 1004,
+        "seq": 6
+      }
+    },
+    {
+      "name": "EVENT_RECORD",
+      "ph": "i",
+      "s": "t",
+      "ts": 14944091955947.176,
+      "pid": 4,
+      "tid": 232863,
+      "args": {
+        "stream": 350529496,
+        "correlation_id": 2004,
+        "seq": 7
+      }
+    },
+    {
+      "name": "KV_END",
+      "ph": "i",
+      "s": "t",
+      "ts": 14944091955956.705,
+      "pid": 4,
+      "tid": 232863,
+      "args": {
+        "stream": 350529496,
+        "correlation_id": 2004,
+        "seq": 8
+      }
+    },
+    {
+      "name": "EVENT_WAIT",
+      "ph": "i",
+      "s": "t",
+      "ts": 14944091956167.457,
+      "pid": 4,
+      "tid": 232863,
+      "args": {
+        "stream": 349556424,
+        "correlation_id": 2004,
+        "seq": 9
+      }
+    },
+    {
+      "name": "MODEL_END",
+      "ph": "i",
+      "s": "t",
+      "ts": 14944091956462.352,
+      "pid": 4,
+      "tid": 232863,
+      "args": {
+        "stream": 0,
+        "correlation_id": 1,
+        "seq": 10
+      }
+    },
+    {
+      "name": "DEVICE_SYNC_BEGIN",
+      "ph": "i",
+      "s": "t",
+      "ts": 14944091956468.402,
+      "pid": 4,
+      "tid": 232863,
+      "args": {
+        "stream": 0,
+        "correlation_id": 1,
+        "seq": 11
+      }
+    },
+    {
+      "name": "DEVICE_SYNC_END",
+      "ph": "i",
+      "s": "t",
+      "ts": 14944091987365.74,
+      "pid": 4,
+      "tid": 232863,
+      "args": {
+        "stream": 0,
+        "correlation_id": 1,
+        "seq": 12
+      }
+    },
+    {
+      "name": "DEVICE_CONFIRMED",
+      "ph": "i",
+      "s": "t",
+      "ts": 14944091987379.752,
+      "pid": 4,
+      "tid": 232863,
+      "args": {
+        "stream": 0,
+        "correlation_id": 1,
+        "seq": 13
+      }
+    },
+    {
+      "name": "HCCL_BEGIN",
+      "ph": "i",
+      "s": "t",
+      "ts": 14944091994392.39,
+      "pid": 4,
+      "tid": 232863,
+      "args": {
+        "stream": 0,
+        "correlation_id": 1,
+        "seq": 14
+      }
+    },
+    {
+      "name": "HCCL_END",
+      "ph": "i",
+      "s": "t",
+      "ts": 14944092481418.037,
+      "pid": 4,
+      "tid": 232863,
+      "args": {
+        "stream": 0,
+        "correlation_id": 1,
+        "seq": 15
+      }
+    },
+    {
+      "name": "DEVICE_CONFIRMED",
+      "ph": "i",
+      "s": "t",
+      "ts": 14944092657146.361,
+      "pid": 4,
+      "tid": 232863,
+      "args": {
+        "stream": 0,
+        "correlation_id": 1,
+        "seq": 16
+      }
+    },
+    {
+      "name": "SCHEDULER_END",
+      "ph": "i",
+      "s": "t",
+      "ts": 14944092657155.05,
+      "pid": 4,
+      "tid": 232863,
+      "args": {
+        "stream": 0,
+        "correlation_id": 1,
+        "seq": 17
+      }
+    },
+    {
+      "name": "CHECKPOINT",
+      "ph": "i",
+      "s": "t",
+      "ts": 14944093370464.639,
+      "pid": 4,
+      "tid": 232863,
+      "args": {
+        "stream": 0,
+        "correlation_id": 1,
+        "seq": 18
+      }
+    },
+    {
+      "name": "SCHEDULER_BEGIN",
+      "ph": "i",
+      "s": "t",
+      "ts": 14944093370472.27,
+      "pid": 4,
+      "tid": 232863,
+      "args": {
+        "stream": 0,
+        "correlation_id": 2,
+        "seq": 19
+      }
+    },
+    {
+      "name": "HCCL_BEGIN",
+      "ph": "i",
+      "s": "t",
+      "ts": 14944093370484.03,
+      "pid": 4,
+      "tid": 232863,
+      "args": {
+        "stream": 0,
+        "correlation_id": 2,
+        "seq": 20
+      }
+    },
+    {
+      "name": "HCCL_END",
+      "ph": "i",
+      "s": "t",
+      "ts": 14944093370834.953,
+      "pid": 4,
+      "tid": 232863,
+      "args": {
+        "stream": 0,
+        "correlation_id": 2,
+        "seq": 21
+      }
+    },
+    {
+      "name": "DEVICE_SYNC_BEGIN",
+      "ph": "i",
+      "s": "t",
+      "ts": 14944093370840.654,
+      "pid": 4,
+      "tid": 232863,
+      "args": {
+        "stream": 0,
+        "correlation_id": 2,
+        "seq": 22
+      }
+    },
+    {
+      "name": "REQUEST_BEGIN",
+      "ph": "i",
+      "s": "t",
+      "ts": 14944091610520.484,
+      "pid": 5,
+      "tid": 232864,
+      "args": {
+        "stream": 0,
+        "correlation_id": 101,
+        "seq": 1
+      }
+    },
+    {
+      "name": "SCHEDULER_BEGIN",
+      "ph": "i",
+      "s": "t",
+      "ts": 14944091610536.047,
+      "pid": 5,
+      "tid": 232864,
+      "args": {
+        "stream": 0,
+        "correlation_id": 1,
+        "seq": 2
+      }
+    },
+    {
+      "name": "MODEL_BEGIN",
+      "ph": "i",
+      "s": "t",
+      "ts": 14944091610540.986,
+      "pid": 5,
+      "tid": 232864,
+      "args": {
+        "stream": 0,
+        "correlation_id": 1,
+        "seq": 3
+      }
+    },
+    {
+      "name": "EVENT_RECORD",
+      "ph": "i",
+      "s": "t",
+      "ts": 14944091944769.416,
+      "pid": 5,
+      "tid": 232864,
+      "args": {
+        "stream": 335525384,
+        "correlation_id": 1005,
+        "seq": 4
+      }
+    },
+    {
+      "name": "KV_BEGIN",
+      "ph": "i",
+      "s": "t",
+      "ts": 14944091944797.656,
+      "pid": 5,
+      "tid": 232864,
+      "args": {
+        "stream": 336498056,
+        "correlation_id": 2005,
+        "seq": 5
+      }
+    },
+    {
+      "name": "EVENT_WAIT",
+      "ph": "i",
+      "s": "t",
+      "ts": 14944091945084.21,
+      "pid": 5,
+      "tid": 232864,
+      "args": {
+        "stream": 336498056,
+        "correlation_id": 1005,
+        "seq": 6
+      }
+    },
+    {
+      "name": "EVENT_RECORD",
+      "ph": "i",
+      "s": "t",
+      "ts": 14944091946836.246,
+      "pid": 5,
+      "tid": 232864,
+      "args": {
+        "stream": 336498056,
+        "correlation_id": 2005,
+        "seq": 7
+      }
+    },
+    {
+      "name": "KV_END",
+      "ph": "i",
+      "s": "t",
+      "ts": 14944091946847.195,
+      "pid": 5,
+      "tid": 232864,
+      "args": {
+        "stream": 336498056,
+        "correlation_id": 2005,
+        "seq": 8
+      }
+    },
+    {
+      "name": "EVENT_WAIT",
+      "ph": "i",
+      "s": "t",
+      "ts": 14944091947037.7,
+      "pid": 5,
+      "tid": 232864,
+      "args": {
+        "stream": 335525384,
+        "correlation_id": 2005,
+        "seq": 9
+      }
+    },
+    {
+      "name": "MODEL_END",
+      "ph": "i",
+      "s": "t",
+      "ts": 14944091947370.684,
+      "pid": 5,
+      "tid": 232864,
+      "args": {
+        "stream": 0,
+        "correlation_id": 1,
+        "seq": 10
+      }
+    },
+    {
+      "name": "DEVICE_SYNC_BEGIN",
+      "ph": "i",
+      "s": "t",
+      "ts": 14944091947376.473,
+      "pid": 5,
+      "tid": 232864,
+      "args": {
+        "stream": 0,
+        "correlation_id": 1,
+        "seq": 11
+      }
+    },
+    {
+      "name": "DEVICE_SYNC_END",
+      "ph": "i",
+      "s": "t",
+      "ts": 14944091975495.102,
+      "pid": 5,
+      "tid": 232864,
+      "args": {
+        "stream": 0,
+        "correlation_id": 1,
+        "seq": 12
+      }
+    },
+    {
+      "name": "DEVICE_CONFIRMED",
+      "ph": "i",
+      "s": "t",
+      "ts": 14944091975513.504,
+      "pid": 5,
+      "tid": 232864,
+      "args": {
+        "stream": 0,
+        "correlation_id": 1,
+        "seq": 13
+      }
+    },
+    {
+      "name": "HCCL_BEGIN",
+      "ph": "i",
+      "s": "t",
+      "ts": 14944091982819.846,
+      "pid": 5,
+      "tid": 232864,
+      "args": {
+        "stream": 0,
+        "correlation_id": 1,
+        "seq": 14
+      }
+    },
+    {
+      "name": "HCCL_END",
+      "ph": "i",
+      "s": "t",
+      "ts": 14944092582273.27,
+      "pid": 5,
+      "tid": 232864,
+      "args": {
+        "stream": 0,
+        "correlation_id": 1,
+        "seq": 15
+      }
+    },
+    {
+      "name": "DEVICE_CONFIRMED",
+      "ph": "i",
+      "s": "t",
+      "ts": 14944092657146.201,
+      "pid": 5,
+      "tid": 232864,
+      "args": {
+        "stream": 0,
+        "correlation_id": 1,
+        "seq": 16
+      }
+    },
+    {
+      "name": "SCHEDULER_END",
+      "ph": "i",
+      "s": "t",
+      "ts": 14944092657154.64,
+      "pid": 5,
+      "tid": 232864,
+      "args": {
+        "stream": 0,
+        "correlation_id": 1,
+        "seq": 17
+      }
+    },
+    {
+      "name": "CHECKPOINT",
+      "ph": "i",
+      "s": "t",
+      "ts": 14944093472914.062,
+      "pid": 5,
+      "tid": 232864,
+      "args": {
+        "stream": 0,
+        "correlation_id": 1,
+        "seq": 18
+      }
+    },
+    {
+      "name": "SCHEDULER_BEGIN",
+      "ph": "i",
+      "s": "t",
+      "ts": 14944093472920.463,
+      "pid": 5,
+      "tid": 232864,
+      "args": {
+        "stream": 0,
+        "correlation_id": 2,
+        "seq": 19
+      }
+    },
+    {
+      "name": "HCCL_BEGIN",
+      "ph": "i",
+      "s": "t",
+      "ts": 14944093472931.053,
+      "pid": 5,
+      "tid": 232864,
+      "args": {
+        "stream": 0,
+        "correlation_id": 2,
+        "seq": 20
+      }
+    },
+    {
+      "name": "HCCL_END",
+      "ph": "i",
+      "s": "t",
+      "ts": 14944093473227.547,
+      "pid": 5,
+      "tid": 232864,
+      "args": {
+        "stream": 0,
+        "correlation_id": 2,
+        "seq": 21
+      }
+    },
+    {
+      "name": "DEVICE_SYNC_BEGIN",
+      "ph": "i",
+      "s": "t",
+      "ts": 14944093473233.236,
+      "pid": 5,
+      "tid": 232864,
+      "args": {
+        "stream": 0,
+        "correlation_id": 2,
+        "seq": 22
+      }
+    },
+    {
+      "name": "REQUEST_BEGIN",
+      "ph": "i",
+      "s": "t",
+      "ts": 14944091617881.45,
+      "pid": 6,
+      "tid": 232865,
+      "args": {
+        "stream": 0,
+        "correlation_id": 101,
+        "seq": 1
+      }
+    },
+    {
+      "name": "SCHEDULER_BEGIN",
+      "ph": "i",
+      "s": "t",
+      "ts": 14944091617896.91,
+      "pid": 6,
+      "tid": 232865,
+      "args": {
+        "stream": 0,
+        "correlation_id": 1,
+        "seq": 2
+      }
+    },
+    {
+      "name": "MODEL_BEGIN",
+      "ph": "i",
+      "s": "t",
+      "ts": 14944091617901.85,
+      "pid": 6,
+      "tid": 232865,
+      "args": {
+        "stream": 0,
+        "correlation_id": 1,
+        "seq": 3
+      }
+    },
+    {
+      "name": "EVENT_RECORD",
+      "ph": "i",
+      "s": "t",
+      "ts": 14944091962195.203,
+      "pid": 6,
+      "tid": 232865,
+      "args": {
+        "stream": 67378264,
+        "correlation_id": 1006,
+        "seq": 4
+      }
+    },
+    {
+      "name": "KV_BEGIN",
+      "ph": "i",
+      "s": "t",
+      "ts": 14944091962229.203,
+      "pid": 6,
+      "tid": 232865,
+      "args": {
+        "stream": 68350936,
+        "correlation_id": 2006,
+        "seq": 5
+      }
+    },
+    {
+      "name": "EVENT_WAIT",
+      "ph": "i",
+      "s": "t",
+      "ts": 14944091962530.607,
+      "pid": 6,
+      "tid": 232865,
+      "args": {
+        "stream": 68350936,
+        "correlation_id": 1006,
+        "seq": 6
+      }
+    },
+    {
+      "name": "EVENT_RECORD",
+      "ph": "i",
+      "s": "t",
+      "ts": 14944091964301.363,
+      "pid": 6,
+      "tid": 232865,
+      "args": {
+        "stream": 68350936,
+        "correlation_id": 2006,
+        "seq": 7
+      }
+    },
+    {
+      "name": "KV_END",
+      "ph": "i",
+      "s": "t",
+      "ts": 14944091964310.703,
+      "pid": 6,
+      "tid": 232865,
+      "args": {
+        "stream": 68350936,
+        "correlation_id": 2006,
+        "seq": 8
+      }
+    },
+    {
+      "name": "EVENT_WAIT",
+      "ph": "i",
+      "s": "t",
+      "ts": 14944091964497.605,
+      "pid": 6,
+      "tid": 232865,
+      "args": {
+        "stream": 67378264,
+        "correlation_id": 2006,
+        "seq": 9
+      }
+    },
+    {
+      "name": "MODEL_END",
+      "ph": "i",
+      "s": "t",
+      "ts": 14944091964835.65,
+      "pid": 6,
+      "tid": 232865,
+      "args": {
+        "stream": 0,
+        "correlation_id": 1,
+        "seq": 10
+      }
+    },
+    {
+      "name": "DEVICE_SYNC_BEGIN",
+      "ph": "i",
+      "s": "t",
+      "ts": 14944091964841.512,
+      "pid": 6,
+      "tid": 232865,
+      "args": {
+        "stream": 0,
+        "correlation_id": 1,
+        "seq": 11
+      }
+    },
+    {
+      "name": "DEVICE_SYNC_END",
+      "ph": "i",
+      "s": "t",
+      "ts": 14944091992913.29,
+      "pid": 6,
+      "tid": 232865,
+      "args": {
+        "stream": 0,
+        "correlation_id": 1,
+        "seq": 12
+      }
+    },
+    {
+      "name": "DEVICE_CONFIRMED",
+      "ph": "i",
+      "s": "t",
+      "ts": 14944091992926.24,
+      "pid": 6,
+      "tid": 232865,
+      "args": {
+        "stream": 0,
+        "correlation_id": 1,
+        "seq": 13
+      }
+    },
+    {
+      "name": "HCCL_BEGIN",
+      "ph": "i",
+      "s": "t",
+      "ts": 14944092000839.482,
+      "pid": 6,
+      "tid": 232865,
+      "args": {
+        "stream": 0,
+        "correlation_id": 1,
+        "seq": 14
+      }
+    },
+    {
+      "name": "HCCL_END",
+      "ph": "i",
+      "s": "t",
+      "ts": 14944092583395.285,
+      "pid": 6,
+      "tid": 232865,
+      "args": {
+        "stream": 0,
+        "correlation_id": 1,
+        "seq": 15
+      }
+    },
+    {
+      "name": "DEVICE_CONFIRMED",
+      "ph": "i",
+      "s": "t",
+      "ts": 14944092658187.785,
+      "pid": 6,
+      "tid": 232865,
+      "args": {
+        "stream": 0,
+        "correlation_id": 1,
+        "seq": 16
+      }
+    },
+    {
+      "name": "SCHEDULER_END",
+      "ph": "i",
+      "s": "t",
+      "ts": 14944092658195.906,
+      "pid": 6,
+      "tid": 232865,
+      "args": {
+        "stream": 0,
+        "correlation_id": 1,
+        "seq": 17
+      }
+    },
+    {
+      "name": "CHECKPOINT",
+      "ph": "i",
+      "s": "t",
+      "ts": 14944093377301.855,
+      "pid": 6,
+      "tid": 232865,
+      "args": {
+        "stream": 0,
+        "correlation_id": 1,
+        "seq": 18
+      }
+    },
+    {
+      "name": "SCHEDULER_BEGIN",
+      "ph": "i",
+      "s": "t",
+      "ts": 14944093377309.365,
+      "pid": 6,
+      "tid": 232865,
+      "args": {
+        "stream": 0,
+        "correlation_id": 2,
+        "seq": 19
+      }
+    },
+    {
+      "name": "KV_BEGIN",
+      "ph": "i",
+      "s": "t",
+      "ts": 14944093377318.727,
+      "pid": 6,
+      "tid": 232865,
+      "args": {
+        "stream": 68350936,
+        "correlation_id": 3006,
+        "seq": 20
+      }
+    },
+    {
+      "name": "REQUEST_BEGIN",
+      "ph": "i",
+      "s": "t",
+      "ts": 14944091631169.129,
+      "pid": 7,
+      "tid": 232866,
+      "args": {
+        "stream": 0,
+        "correlation_id": 101,
+        "seq": 1
+      }
+    },
+    {
+      "name": "SCHEDULER_BEGIN",
+      "ph": "i",
+      "s": "t",
+      "ts": 14944091631184.44,
+      "pid": 7,
+      "tid": 232866,
+      "args": {
+        "stream": 0,
+        "correlation_id": 1,
+        "seq": 2
+      }
+    },
+    {
+      "name": "MODEL_BEGIN",
+      "ph": "i",
+      "s": "t",
+      "ts": 14944091631189.578,
+      "pid": 7,
+      "tid": 232866,
+      "args": {
+        "stream": 0,
+        "correlation_id": 1,
+        "seq": 3
+      }
+    },
+    {
+      "name": "EVENT_RECORD",
+      "ph": "i",
+      "s": "t",
+      "ts": 14944091972894.664,
+      "pid": 7,
+      "tid": 232866,
+      "args": {
+        "stream": 304523928,
+        "correlation_id": 1007,
+        "seq": 4
+      }
+    },
+    {
+      "name": "KV_BEGIN",
+      "ph": "i",
+      "s": "t",
+      "ts": 14944091972923.406,
+      "pid": 7,
+      "tid": 232866,
+      "args": {
+        "stream": 305496776,
+        "correlation_id": 2007,
+        "seq": 5
+      }
+    },
+    {
+      "name": "EVENT_WAIT",
+      "ph": "i",
+      "s": "t",
+      "ts": 14944091973191.78,
+      "pid": 7,
+      "tid": 232866,
+      "args": {
+        "stream": 305496776,
+        "correlation_id": 1007,
+        "seq": 6
+      }
+    },
+    {
+      "name": "EVENT_RECORD",
+      "ph": "i",
+      "s": "t",
+      "ts": 14944091974717.922,
+      "pid": 7,
+      "tid": 232866,
+      "args": {
+        "stream": 305496776,
+        "correlation_id": 2007,
+        "seq": 7
+      }
+    },
+    {
+      "name": "KV_END",
+      "ph": "i",
+      "s": "t",
+      "ts": 14944091974726.451,
+      "pid": 7,
+      "tid": 232866,
+      "args": {
+        "stream": 305496776,
+        "correlation_id": 2007,
+        "seq": 8
+      }
+    },
+    {
+      "name": "EVENT_WAIT",
+      "ph": "i",
+      "s": "t",
+      "ts": 14944091974898.715,
+      "pid": 7,
+      "tid": 232866,
+      "args": {
+        "stream": 304523928,
+        "correlation_id": 2007,
+        "seq": 9
+      }
+    },
+    {
+      "name": "MODEL_END",
+      "ph": "i",
+      "s": "t",
+      "ts": 14944091975165.207,
+      "pid": 7,
+      "tid": 232866,
+      "args": {
+        "stream": 0,
+        "correlation_id": 1,
+        "seq": 10
+      }
+    },
+    {
+      "name": "DEVICE_SYNC_BEGIN",
+      "ph": "i",
+      "s": "t",
+      "ts": 14944091975171.129,
+      "pid": 7,
+      "tid": 232866,
+      "args": {
+        "stream": 0,
+        "correlation_id": 1,
+        "seq": 11
+      }
+    },
+    {
+      "name": "DEVICE_SYNC_END",
+      "ph": "i",
+      "s": "t",
+      "ts": 14944092004602.846,
+      "pid": 7,
+      "tid": 232866,
+      "args": {
+        "stream": 0,
+        "correlation_id": 1,
+        "seq": 12
+      }
+    },
+    {
+      "name": "DEVICE_CONFIRMED",
+      "ph": "i",
+      "s": "t",
+      "ts": 14944092004616.064,
+      "pid": 7,
+      "tid": 232866,
+      "args": {
+        "stream": 0,
+        "correlation_id": 1,
+        "seq": 13
+      }
+    },
+    {
+      "name": "HCCL_BEGIN",
+      "ph": "i",
+      "s": "t",
+      "ts": 14944092011696.166,
+      "pid": 7,
+      "tid": 232866,
+      "args": {
+        "stream": 0,
+        "correlation_id": 1,
+        "seq": 14
+      }
+    },
+    {
+      "name": "HCCL_END",
+      "ph": "i",
+      "s": "t",
+      "ts": 14944092580524.023,
+      "pid": 7,
+      "tid": 232866,
+      "args": {
+        "stream": 0,
+        "correlation_id": 1,
+        "seq": 15
+      }
+    },
+    {
+      "name": "DEVICE_CONFIRMED",
+      "ph": "i",
+      "s": "t",
+      "ts": 14944092658189.227,
+      "pid": 7,
+      "tid": 232866,
+      "args": {
+        "stream": 0,
+        "correlation_id": 1,
+        "seq": 16
+      }
+    },
+    {
+      "name": "SCHEDULER_END",
+      "ph": "i",
+      "s": "t",
+      "ts": 14944092658196.855,
+      "pid": 7,
+      "tid": 232866,
+      "args": {
+        "stream": 0,
+        "correlation_id": 1,
+        "seq": 17
+      }
+    },
+    {
+      "name": "CHECKPOINT",
+      "ph": "i",
+      "s": "t",
+      "ts": 14944093438390.111,
+      "pid": 7,
+      "tid": 232866,
+      "args": {
+        "stream": 0,
+        "correlation_id": 1,
+        "seq": 18
+      }
+    },
+    {
+      "name": "SCHEDULER_BEGIN",
+      "ph": "i",
+      "s": "t",
+      "ts": 14944093438397.371,
+      "pid": 7,
+      "tid": 232866,
+      "args": {
+        "stream": 0,
+        "correlation_id": 2,
+        "seq": 19
+      }
+    },
+    {
+      "name": "HCCL_BEGIN",
+      "ph": "i",
+      "s": "t",
+      "ts": 14944093438408.451,
+      "pid": 7,
+      "tid": 232866,
+      "args": {
+        "stream": 0,
+        "correlation_id": 2,
+        "seq": 20
+      }
+    },
+    {
+      "name": "HCCL_END",
+      "ph": "i",
+      "s": "t",
+      "ts": 14944093438773.979,
+      "pid": 7,
+      "tid": 232866,
+      "args": {
+        "stream": 0,
+        "correlation_id": 2,
+        "seq": 21
+      }
+    },
+    {
+      "name": "DEVICE_SYNC_BEGIN",
+      "ph": "i",
+      "s": "t",
+      "ts": 14944093438780.107,
+      "pid": 7,
+      "tid": 232866,
+      "args": {
+        "stream": 0,
+        "correlation_id": 2,
+        "seq": 22
+      }
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+Device_id,Name,Type,Accelerator Core,Start Time(us),Duration(us),Wait Time(us),Block Num
+7,aclnnInplaceNormal_DSARandomNormal_DSARandomNormal,N/A,N/A,1789546409171854.156	,4.100,0,0
+7,aclnnInplaceNormal_DSARandomNormal_DSARandomNormal,N/A,N/A,1789546409173200.536	,2.800,1342.150000,0
+7,aclnnMatmul_MatMulCommon_MatMulV2,N/A,N/A,1789546409538321.496	,9.580,365118.200000,16
+7,aclnnMatmul_MatMulCommon_MatMulV2,N/A,N/A,1789546409538928.416	,5.320,597.420000,16
+7,aclnnInplaceOne_OnesLikeAiCore_OnesLike,N/A,N/A,1789546409542374.456	,1.960,3440.680000,1
+7,aclnnMuls_MulAiCore_Mul,N/A,N/A,1789546409548693.176	,2.660,6316.790000,1
+7,hcom_allReduce__612_0_1,N/A,COMMUNICATION,1789546410159461.076	,19.620,610765.090000,0

@@ -1,0 +1,57 @@
+Ascend Hang Flight Report
+
+HOST PROGRESS
+rank 4: seq=22 pid=232863 last=DEVICE_SYNC_BEGIN corr=2
+  open REQUEST_BEGIN corr=101 stream=0 seq=1
+  open SCHEDULER_BEGIN corr=2 stream=0 seq=19
+  open DEVICE_SYNC_BEGIN corr=2 stream=0 seq=22
+  last device confirmation: seq=16 corr=1
+rank 5: seq=22 pid=232864 last=DEVICE_SYNC_BEGIN corr=2
+  open REQUEST_BEGIN corr=101 stream=0 seq=1
+  open SCHEDULER_BEGIN corr=2 stream=0 seq=19
+  open DEVICE_SYNC_BEGIN corr=2 stream=0 seq=22
+  last device confirmation: seq=16 corr=1
+rank 6: seq=20 pid=232865 last=KV_BEGIN corr=3006
+  open REQUEST_BEGIN corr=101 stream=0 seq=1
+  open SCHEDULER_BEGIN corr=2 stream=0 seq=19
+  open KV_BEGIN corr=3006 stream=68350936 seq=20
+  last device confirmation: seq=16 corr=1
+rank 7: seq=22 pid=232866 last=DEVICE_SYNC_BEGIN corr=2
+  open REQUEST_BEGIN corr=101 stream=0 seq=1
+  open SCHEDULER_BEGIN corr=2 stream=0 seq=19
+  open DEVICE_SYNC_BEGIN corr=2 stream=0 seq=22
+  last device confirmation: seq=16 corr=1
+
+COLLECTIVES (end means Host API returned, not NPU completion)
+comm=700 op=1 entered=[4, 5, 6, 7] end=[4, 5, 6, 7] missing_expected=[] types=[1] type_mismatch=False
+comm=700 op=2 entered=[4, 5, 7] end=[4, 5, 7] missing_expected=[6] types=[1] type_mismatch=False
+
+EVENT DEPENDENCIES
+rank 4 stream 350529496 waits event 1004 producer_stream=349556424
+rank 4 stream 349556424 waits event 2004 producer_stream=350529496
+rank 5 stream 336498056 waits event 1005 producer_stream=335525384
+rank 5 stream 335525384 waits event 2005 producer_stream=336498056
+rank 6 stream 68350936 waits event 1006 producer_stream=67378264
+rank 6 stream 67378264 waits event 2006 producer_stream=68350936
+rank 7 stream 305496776 waits event 1007 producer_stream=304523928
+rank 7 stream 304523928 waits event 2007 producer_stream=305496776
+
+BLOCKING EVIDENCE
+comm=700 op=2: no HCCL_BEGIN observed for ranks [6]
+  rank 6 last host event: KV_BEGIN corr=3006 stream=68350936 seq=20
+  rank 4 last host event: DEVICE_SYNC_BEGIN corr=2 stream=0 seq=22
+  rank 5 last host event: DEVICE_SYNC_BEGIN corr=2 stream=0 seq=22
+  rank 7 last host event: DEVICE_SYNC_BEGIN corr=2 stream=0 seq=22
+  HCCL_END, if present, only proves Host API return; check DEVICE_SYNC_END/DEVICE_CONFIRMED.
+
+LIMITATIONS
+All events are host observations unless DEVICE_CONFIRMED is explicitly emitted after a verified device completion.
+A stream dependency cycle is a candidate only; EventRecord placement and device completion require validation.
+A missing collective requires explicit expected ranks and a shared communicator/operation id.
+
+DEVICE KERNELS (completed pre-hang window)
+rank 4: 7 kernels
+rank 5: 7 kernels
+rank 6: 7 kernels
+rank 7: 7 kernels
+See device_operators.txt and device_kernel_csv/. The hanging collective is outside this completed profile window.
