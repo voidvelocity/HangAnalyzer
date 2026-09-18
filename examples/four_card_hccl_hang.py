@@ -180,7 +180,13 @@ def run(args: argparse.Namespace) -> None:
     children: dict[int, subprocess.Popen] = {}
     log_handles = []
     watchdog = None
+    aicpu_sampler = None
     try:
+        if args.sample_aicpu:
+            aicpu_sampler = subprocess.Popen(
+                [sys.executable, "-m", "flightrecorder.aicpu_sampler", "capture",
+                 "--devices", ",".join(map(str, DEVICES)), "--interval", "0.5",
+                 "--output", str(output / "aicpu_usage.jsonl")], cwd=ROOT)
         for rank in DEVICES:
             log = (output / "logs" / f"rank{rank}.log").open("w")
             log_handles.append(log)
@@ -249,6 +255,12 @@ def run(args: argparse.Namespace) -> None:
                 watchdog.wait(timeout=15)
             except subprocess.TimeoutExpired:
                 watchdog.kill(); watchdog.wait()
+        if aicpu_sampler is not None:
+            aicpu_sampler.terminate()
+            try:
+                aicpu_sampler.wait(timeout=5)
+            except subprocess.TimeoutExpired:
+                aicpu_sampler.kill(); aicpu_sampler.wait()
         for handle in log_handles:
             handle.close()
 
@@ -257,6 +269,11 @@ def run(args: argparse.Namespace) -> None:
         raise RuntimeError("no watchdog snapshot")
     report = analyze(paths, set(DEVICES))
     write_outputs(report, output / "report", paths)
+    if args.sample_aicpu:
+        from flightrecorder.aicpu_sampler import summarize
+        samples = output / "aicpu_usage.jsonl"
+        if samples.exists():
+            (output / "report" / "aicpu_usage.txt").write_text(summarize(samples) + "\n")
     if args.mspti_library:
         from flightrecorder.mspti_ring import read_ring, report as mspti_report
         mspti_reports = output / "report" / "mspti"
@@ -344,6 +361,8 @@ def main() -> None:
                    help="libflightcheckpoint_cann.so; enables per-stream nonblocking checkpoints")
     p.add_argument("--mspti-library", help="libhangmspti.so; record callbacks and activities during hang")
     p.add_argument("--mspti-preload", help="absolute path to libmspti.so; required with --mspti-library")
+    p.add_argument("--sample-aicpu", action="store_true",
+                   help="sample per-device AICPU/AICore/AIVector utilization independently")
     args = p.parse_args()
     if bool(args.mspti_library) != bool(args.mspti_preload):
         p.error("--mspti-library and --mspti-preload must be used together")

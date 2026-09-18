@@ -27,6 +27,7 @@ typedef struct __attribute__((aligned(64))) hang_event {
     uint16_t flags;
     uint32_t code;                /* callback ID or msPTI error */
     char name[64];                /* truncated UTF-8/ASCII label */
+    char detail[64];              /* Kernel type or HCCL communicator name */
 } hang_event;
 
 /* Call once in each worker process, after fork and before NPU work. */
@@ -39,5 +40,5 @@ int hang_mspti_set_enabled(int enabled);
 
 #ifdef __cplusplus
 }
-static_assert(sizeof(hang_event) == 128, "hang_event ABI changed");
+static_assert(sizeof(hang_event) == 192, "hang_event ABI changed");
 #endif

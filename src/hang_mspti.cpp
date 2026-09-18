@@ -50,7 +50,8 @@ void name_copy(char (&dst)[64], const char *src) {
     dst[n] = 0;
 }
 void record(uint16_t kind, uint32_t device, uint32_t stream, uint64_t corr,
-            uint64_t start, uint64_t end, uint32_t code, const char *name) {
+            uint64_t start, uint64_t end, uint32_t code, const char *name,
+            const char *detail = nullptr) {
     Header *h = g_header;
     if (!h || getpid() != g_owner) return;
     uint64_t seq = __atomic_add_fetch(&h->write_seq, 1, __ATOMIC_RELAXED);
@@ -68,6 +69,7 @@ void record(uint16_t kind, uint32_t device, uint32_t stream, uint64_t corr,
     slot.flags = 0;
     slot.code = code;
     name_copy(slot.name, name);
+    name_copy(slot.detail, detail);
     __atomic_store_n(&slot.seq, seq, __ATOMIC_RELEASE);
 }
 void callback(void *, msptiCallbackDomain domain, msptiCallbackId cbid,
@@ -105,11 +107,11 @@ void buffer_complete(uint8_t *buffer, size_t, size_t valid) {
             if (base->kind == MSPTI_ACTIVITY_KIND_KERNEL) {
                 auto *k = reinterpret_cast<msptiActivityKernel *>(base);
                 record(HANG_KERNEL_DONE, k->ds.deviceId, k->ds.streamId, k->correlationId,
-                       k->start, k->end, 0, k->name);
+                       k->start, k->end, 0, k->name, k->type);
             } else if (base->kind == MSPTI_ACTIVITY_KIND_HCCL) {
                 auto *h = reinterpret_cast<msptiActivityHccl *>(base);
                 record(HANG_HCCL_DONE, h->ds.deviceId, h->ds.streamId, 0,
-                       h->start, h->end, 0, h->name);
+                       h->start, h->end, 0, h->name, h->commName);
             } else if (base->kind == MSPTI_ACTIVITY_KIND_RUNTIME_API) {
                 auto *a = reinterpret_cast<msptiActivityApi *>(base);
                 record(HANG_RUNTIME_API_DONE, UINT32_MAX, UINT32_MAX,
@@ -172,7 +174,7 @@ extern "C" int hang_mspti_start(const char *path, uint64_t capacity) {
     g_events = reinterpret_cast<hang_event *>(static_cast<char *>(mapped) + sizeof(Header));
     g_owner = getpid();
     g_header->magic = MAGIC;
-    g_header->version = 1;
+    g_header->version = 2;
     g_header->event_size = sizeof(hang_event);
     g_header->capacity = capacity;
     g_header->pid = uint32_t(g_owner);

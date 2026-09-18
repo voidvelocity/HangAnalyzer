@@ -15,6 +15,8 @@ PYTHONPATH=. python examples/four_card_hccl_hang.py \
 
 运行结果 `PASS`。四个 PID 的 `.msflight` 都在卡死/终止后可读，`overwritten=0`、`dropped_buffers=0`，且有 Runtime enter/exit、Kernel Activity 和 HCCL Activity。Rank 4/5/7 各观察到 **2 次 HCCL enter/exit**，Rank 6 只观察到 **1 次**；四卡均只交付了第一轮的 HCCL 完成 Activity。第二轮未交付 HCCL 完成记录，需与显式 `.flight` 的缺 Rank 和开放 `DEVICE_SYNC_BEGIN` 一起判读，不能只凭缺失 Activity 断言设备任务未运行。人类可读原始报告见 [rank4](results/a2-fourcard-mspti-20260918/report/mspti/rank4.txt)、[rank5](results/a2-fourcard-mspti-20260918/report/mspti/rank5.txt)、[rank6](results/a2-fourcard-mspti-20260918/report/mspti/rank6.txt)、[rank7](results/a2-fourcard-mspti-20260918/report/mspti/rank7.txt) 和 [跨 Rank 显式事件报告](results/a2-fourcard-mspti-20260918/report/report.txt)。原始 33 MiB/PID 的 ring 保留在测试容器 `/tmp/hang-fourcard-mspti-249457/mspti/`，未纳入仓库。
 
+同日再次运行时加 `--sample-aicpu`，在同一受控卡死期间每卡取得 26 个 AICPU 利用率样本，均为 0%；新版 msPTI ring 保留 `KERNEL_AICORE`、`KERNEL_AIVEC` 类型及 HCCL 通信组。详见 [AICPU 卡死观察指南](AICPU_HANG_GUIDE.md)。原始采样和报告仅保留在本机的 `results/a2-fourcard-aicpu-20260918/`，不推送到远程仓库。这仅描述 A2 测试现象，不能外推至 950PR。
+
 ## 场景与结果
 
 在 `173.125.1.2` 的 `gl_main_a2` 容器中，分别用一个进程绑定 Ascend A2 的 4、5、6、7 号卡。每个进程创建计算 Stream 和传输 Stream，运行矩阵乘、跨 Stream Event 等待、KV 数据副本任务，再进行设备同步。第一轮四卡 HCCL AllReduce 正常完成。

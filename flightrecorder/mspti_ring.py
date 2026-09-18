@@ -3,12 +3,13 @@ from __future__ import annotations
 
 import mmap
 import struct
-from collections import defaultdict
+from collections import Counter, defaultdict
 from pathlib import Path
 
 MAGIC = 0x315450534D474E48
 HEADER = struct.Struct("<QIIQIIQQQQ")
-EVENT = struct.Struct("<QQQQQIIIIHHI64s")
+EVENT_V1 = struct.Struct("<QQQQQIIIIHHI64s")
+EVENT = struct.Struct("<QQQQQIIIIHHI64s64s")
 LABELS = {
     1: "runtime_enter", 2: "runtime_exit", 3: "hccl_enter",
     4: "hccl_exit", 5: "kernel_done", 6: "hccl_done", 7: "status",
@@ -21,8 +22,9 @@ def read_ring(path: str | Path) -> tuple[dict, list[dict]]:
         if len(data) < 128:
             raise ValueError("ring header is truncated")
         magic, version, size, capacity, pid, _, written, wall, mono, dropped = HEADER.unpack_from(data)
-        if magic != MAGIC or version != 1 or size != EVENT.size:
+        if magic != MAGIC or (version, size) not in ((1, EVENT_V1.size), (2, EVENT.size)):
             raise ValueError("unsupported msPTI ring format")
+        event_format = EVENT if version == 2 else EVENT_V1
         if len(data) < 128 + capacity * size:
             raise ValueError("ring is truncated")
         first = max(1, written - capacity + 1)
@@ -32,16 +34,18 @@ def read_ring(path: str | Path) -> tuple[dict, list[dict]]:
             before = struct.unpack_from("<Q", data, offset)[0]
             if before != seq:
                 continue
-            raw = EVENT.unpack_from(data, offset)
+            raw = event_format.unpack_from(data, offset)
             after = struct.unpack_from("<Q", data, offset)[0]
             if raw[0] != seq or after != seq:
                 continue  # writer has claimed, but not published, this slot
-            name = raw[-1].split(b"\0", 1)[0].decode("utf-8", "replace")
+            name = raw[12].split(b"\0", 1)[0].decode("utf-8", "replace")
+            detail = (raw[13].split(b"\0", 1)[0].decode("utf-8", "replace")
+                      if version == 2 else "")
             events.append(dict(seq=seq, observed_ns=raw[1], start_ns=raw[2],
                                end_ns=raw[3], correlation_id=raw[4], pid=raw[5],
                                tid=raw[6], device=raw[7], stream=raw[8],
                                kind=LABELS.get(raw[9], f"unknown_{raw[9]}"),
-                               flags=raw[10], code=raw[11], name=name))
+                               flags=raw[10], code=raw[11], name=name, detail=detail))
         return dict(pid=pid, capacity=capacity, written=written, wall_ns=wall,
                     mono_ns=mono, dropped=dropped, overwritten=max(0, written - capacity)), events
 
@@ -74,6 +78,10 @@ def report(path: str | Path, *, tail: int = 40) -> str:
     joined = [e for e in kernels if e["correlation_id"] in api_by_correlation]
     lines.append(f"completed kernels with matching Runtime API Activity correlation: "
                  f"{len(joined)}/{len(kernels)}")
+    types = Counter(e["detail"] or "unknown" for e in kernels)
+    lines.append("completed Kernel Activity types: " +
+                 (", ".join(f"{kind}={count}" for kind, count in sorted(types.items()))
+                  if types else "none"))
     last_by_stream = {}
     for e in events:
         if e["kind"] in ("kernel_done", "hccl_done"):
@@ -81,7 +89,8 @@ def report(path: str | Path, *, tail: int = 40) -> str:
     lines.append("last delivered completed activity per stream:")
     for (device, stream), e in sorted(last_by_stream.items()):
         lines.append(f"  device={device} stream={stream} #{e['seq']} "
-                     f"{e['kind']} corr={e['correlation_id']} {e['name']}")
+                     f"{e['kind']} corr={e['correlation_id']} {e['name']} "
+                     f"[{e['detail']}]")
     if not last_by_stream:
         lines.append("  none")
     if events and events[0]["seq"] > 1:
@@ -91,7 +100,8 @@ def report(path: str | Path, *, tail: int = 40) -> str:
         rel_ms = (e["observed_ns"] - header["mono_ns"]) / 1e6
         dev = "" if e["device"] == 0xFFFFFFFF else f" device={e['device']} stream={e['stream']}"
         lines.append(f"  +{rel_ms:10.3f}ms #{e['seq']:>8} {e['kind']:<16}"
-                     f" corr={e['correlation_id']}{dev} code={e['code']} {e['name']}")
+                     f" corr={e['correlation_id']}{dev} code={e['code']} {e['name']}"
+                     f" [{e['detail']}]")
     lines.append("Interpretation: *_done means a completed activity record was delivered to host; "
                  "an absent record cannot prove that a kernel never ran. Callback exit means API returned, "
                  "not device completion. Callback correlation IDs are not assumed reliable; "

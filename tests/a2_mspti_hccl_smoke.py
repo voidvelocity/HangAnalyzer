@@ -35,6 +35,7 @@ print(report(path, tail=6), flush=True)
 assert any(e["kind"] == "hccl_enter" for e in events), "no HCCL callback"
 assert any(e["kind"] == "hccl_exit" for e in events), "no HCCL exit"
 assert any(e["kind"] == "hccl_done" for e in events), "no completed HCCL activity"
+assert any(e["detail"] for e in events if e["kind"] == "hccl_done"), "no HCCL group name"
 lib.hang_mspti_stop()
 dist.destroy_process_group()
 print(f"HCCL unified ring rank {rank} passed", flush=True)

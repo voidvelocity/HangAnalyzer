@@ -4,6 +4,8 @@
 
 先读 [统一 msPTI 采集器指南](MSPTI_FLIGHT_RECORDER.md)。它包含构建、`LD_PRELOAD`、`/home/enable_prof`、0.5 秒刷新、人类可读报告和 A2 真机测试命令。**Runtime callback 只能说明 CANN API 被调用，不能证明 torch_npu 上层队列或 Device 执行；Activity 缺失也不能证明算子没有运行。**
 
+要调查通信是否占用 AICPU，使用 [AICPU 卡死观察指南](AICPU_HANG_GUIDE.md)：独立采样设备总体 AICPU 利用率、保留已完成 Kernel 的类型，并在正常复现中用 msprof 对照 Task Type。
+
 Ascend A2 / CANN 9.1.0 的真机环境、测试项与结果见 [VALIDATION.md](VALIDATION.md)。
 
 将工具接入真实两机 vLLM-Ascend 服务的步骤见 [VLLM_TWO_NODE_GUIDE.md](VLLM_TWO_NODE_GUIDE.md)。

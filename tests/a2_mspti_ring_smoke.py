@@ -34,5 +34,6 @@ assert any(e["kind"] == "runtime_enter" for e in events), "no Runtime callback"
 assert any(e["kind"] == "runtime_exit" for e in events), "no Runtime exit"
 assert any(e["kind"] == "kernel_done" for e in events), "no completed kernel activity"
 assert any(e["device"] == args.device for e in events if e["kind"] == "kernel_done")
+assert any(e["detail"].startswith("KERNEL_") for e in events if e["kind"] == "kernel_done")
 lib.hang_mspti_stop()
 print(f"A2 unified msPTI smoke passed: {len(events)} events, pid={header['pid']}")

@@ -48,6 +48,8 @@ PYTHONPATH=/path/to/HangAnalyzer python3 -m flightrecorder.mspti_ring \
 
 两机文件按节点、PID 保留。`.msflight` 里的 Callback 是 CANN API 层，`.flight` 里的显式埋点是 vLLM 语义层，Event checkpoint 是注册 Stream 的完成确认。分析时按这三个层次合并证据，不把 Callback exit 或缺失 Activity 直接解释成 Device 已完成/未执行。该自动路径在 A2/CANN 9.1.0 已验证，在 950PR/CANN 9.2.0 必须做本节的预检后才能用于结论。
 
+若怀疑 HCCL 占用 AICPU，在两机各自启动独立 [AICPU 利用率采样](AICPU_HANG_GUIDE.md)，保存故障前、故障中、进程退出后的每卡样本。`npu-smi` 只能给出设备总体占用率；已完成 Kernel 的 `type` 可从新版 `.msflight` 查看。950PR 的 HCCL 加速模式和未完成 AICPU Task 的具体函数，需要目标环境进一步验证，不能凭高占用率或缺失 Activity 直接定责。
+
 ## 2. 最小接入点
 
 每个 NPU worker 在启动/fork 完成、选择 NPU Device 后创建自己的 Recorder，使用 **global Rank**。不要在父进程初始化后把 Recorder 或 Event manager 传入子进程；每个 worker 应写独立 `.flight`：

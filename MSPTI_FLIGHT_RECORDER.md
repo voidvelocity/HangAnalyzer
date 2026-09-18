@@ -15,7 +15,7 @@
 
 A2/CANN 9.1.0 + msPTI 26.1.0 实测发现 Callback `correlationId` 在 Runtime enter/exit 两侧可能不同或为 0。分析器因此用 **线程 ID + callback ID** 配对，并单独统计 Runtime API Activity 与 Kernel Activity 的非零 correlation 匹配。不要用 Callback ID 跨 Rank 对齐请求。`observed_ns` 是 Host 读取/回调时的 monotonic 时间；Activity 的 `start_ns/end_ns` 属于 msPTI 时钟域，报告不把两者直接相减。若 ring 覆盖旧数据或 buffer 申请失败，报告显示 `overwritten`、`dropped_buffers`。
 
-当前 ring 不采集 AICore/MTE/Vector 利用率，也不读取 CANN 内部 Stream 排队深度或 HCCL 等待图。这些指标需要另行验证对应性能计数器与 msPTI 并用是否可行。
+当前 ring 不采集 AICore/MTE/Vector 利用率，也不读取 CANN 内部 Stream 排队深度或 HCCL 等待图。v2 ring 保留已完成 Kernel 的 `type` 与 HCCL 通信组；卡死时的设备总体 AICPU 利用率可用独立采样器记录，详见 [AICPU 卡死观察指南](AICPU_HANG_GUIDE.md)。
 
 ## 构建与部署
 
@@ -54,7 +54,7 @@ start('/data/hang/incident-001/node0/mspti',
       interval_s=0.5, control_file='/home/enable_prof')
 ```
 
-启动后先发短请求，确认每个 worker 都有 ring、无 `.error`，且报告中有 `runtime_enter` 和 `kernel_done`。再把 `/home/enable_prof` 设为 `0`，重新确认 count 不增长；发正式故障请求前设为 `1`。容器中的 ring 目录应挂载到宿主机，并给足磁盘：默认 262144 条 × 128 字节，约 32 MiB/worker。Activity buffer 是固定的 8 × 4 MiB 池，池耗尽时增加 `dropped_buffers`，不能把缺失记录当作未执行。进程被 SIGKILL 后 mmap 文件仍可读取已发布的槽位；机器掉电前未同步到稳定存储的页面不保证保留。
+启动后先发短请求，确认每个 worker 都有 ring、无 `.error`，且报告中有 `runtime_enter` 和 `kernel_done`。再把 `/home/enable_prof` 设为 `0`，重新确认 count 不增长；发正式故障请求前设为 `1`。容器中的 ring 目录应挂载到宿主机，并给足磁盘：v2 默认 262144 条 × 192 字节，约 48 MiB/worker；旧 v1 文件仍可解析。Activity buffer 是固定的 8 × 4 MiB 池，池耗尽时增加 `dropped_buffers`，不能把缺失记录当作未执行。进程被 SIGKILL 后 mmap 文件仍可读取已发布的槽位；机器掉电前未同步到稳定存储的页面不保证保留。
 
 ## 人类可读结果
 
