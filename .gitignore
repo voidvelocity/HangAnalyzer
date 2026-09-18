@@ -2,4 +2,6 @@ build/
 __pycache__/
 *.pyc
 *.flight
-/report/
+report/
+results/
+
