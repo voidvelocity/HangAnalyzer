@@ -33,7 +33,8 @@ def _record(kind: str, data: Any) -> dict[str, Any]:
         "name": str(data.name),
         "start_ns": start,
         "end_ns": end,
-        "duration_ns": max(0, end - start),
+        "timestamp_valid": start > 0 and end >= start,
+        "duration_ns": end - start if start > 0 and end >= start else None,
     }
     if kind == "kernel":
         item["kernel_type"] = str(data.type)
@@ -51,12 +52,14 @@ class MsptiCapture:
     """One instance per NPU worker/process. Start after selecting its NPU."""
 
     def __init__(self, output: str | Path, *, interval_s: float = 0.5,
-                 buffer_mb: int = 64, queue_size: int = 100_000):
+                 buffer_mb: int = 64, queue_size: int = 100_000,
+                 enable_file: str | Path | None = "/home/enable_prof"):
         if interval_s <= 0 or buffer_mb <= 0 or queue_size <= 0:
             raise ValueError("interval_s, buffer_mb and queue_size must be positive")
         self.output = Path(output)
         self.interval_s = interval_s
         self.buffer_mb = buffer_mb
+        self.enable_file = Path(enable_file) if enable_file is not None else None
         self.items: queue.Queue[dict[str, Any]] = queue.Queue(maxsize=queue_size)
         self.stop_requested = threading.Event()
         self.writer_done = threading.Event()
@@ -65,6 +68,8 @@ class MsptiCapture:
         self.kernel_monitor: Any = None
         self.comm_monitor: Any = None
         self.started = False
+        self.monitor_active = False
+        self.transitions = 0
         self.dropped = 0
         self.callback_errors = 0
         self.flush_errors = 0
@@ -105,25 +110,75 @@ class MsptiCapture:
     def _success(result: Any) -> bool:
         return _enum_value(result) == 0
 
-    def _flush_loop(self) -> None:
-        while not self.stop_requested.wait(self.interval_s):
-            try:
-                # flush_all is global in msPTI 26.1; one call flushes both kinds.
-                result = self.kernel_monitor.flush_all()
+    def _put_control(self, item: dict[str, Any]) -> None:
+        try:
+            self.items.put_nowait(item)
+        except queue.Full:
+            self.dropped += 1
+
+    def _enabled_by_file(self) -> bool:
+        if self.enable_file is None:
+            return True
+        try:
+            value = self.enable_file.read_text(encoding="utf-8").strip()
+        except FileNotFoundError:
+            return False
+        except OSError as exc:
+            self.last_error = f"enable file {type(exc).__name__}: {exc}"
+            return False
+        if value not in ("0", "1"):
+            self.last_error = f"enable file must contain 0 or 1: {self.enable_file}"
+            return False
+        return value == "1"
+
+    def _set_monitor_active(self, enabled: bool) -> None:
+        if enabled == self.monitor_active:
+            return
+        if enabled:
+            result = self.kernel_monitor.start(lambda data: self._enqueue("kernel", data))
+            if not self._success(result):
+                raise RuntimeError(f"KernelMonitor.start failed: {result}")
+            result = self.comm_monitor.start(lambda data: self._enqueue("communication", data))
+            if not self._success(result):
+                self.kernel_monitor.stop()
+                raise RuntimeError(f"CommunicationMonitor.start failed: {result}")
+            self.monitor_active = True
+        else:
+            # stop() performs the final flush before removing each callback.
+            for label, monitor in (("kernel", self.kernel_monitor), ("communication", self.comm_monitor)):
+                result = monitor.stop()
                 if not self._success(result):
-                    self.flush_errors += 1
-                    self.last_error = f"flush_all returned {result}"
-                tick = {
-                    "kind": "flush_tick", "host_time_ns": time.time_ns(),
-                    "flush_ok": self._success(result), "dropped": self.dropped,
-                }
-                try:
-                    self.items.put_nowait(tick)
-                except queue.Full:
-                    self.dropped += 1
+                    self.last_error = f"{label} stop returned {result}"
+            self.monitor_active = False
+        self.transitions += 1
+        self._put_control({"kind": "capture_state", "host_time_ns": time.time_ns(),
+                           "enabled": enabled})
+
+    def _flush_loop(self) -> None:
+        # This thread owns the msPTI start/stop lifecycle, including final stop.
+        while not self.stop_requested.is_set():
+            try:
+                self._set_monitor_active(self._enabled_by_file())
+                flush_ok: bool | None = None
+                if self.monitor_active:
+                    # flush_all is global in msPTI 26.1; one call flushes both kinds.
+                    result = self.kernel_monitor.flush_all()
+                    flush_ok = self._success(result)
+                    if not flush_ok:
+                        self.flush_errors += 1
+                        self.last_error = f"flush_all returned {result}"
+                self._put_control({"kind": "flush_tick", "host_time_ns": time.time_ns(),
+                                   "enabled": self.monitor_active, "flush_ok": flush_ok,
+                                   "dropped": self.dropped})
             except Exception as exc:
                 self.flush_errors += 1
-                self.last_error = f"flush_all {type(exc).__name__}: {exc}"
+                self.last_error = f"monitor loop {type(exc).__name__}: {exc}"
+            self.stop_requested.wait(self.interval_s)
+        if self.monitor_active:
+            try:
+                self._set_monitor_active(False)
+            except Exception as exc:
+                self.last_error = f"final stop {type(exc).__name__}: {exc}"
 
     def start(self) -> "MsptiCapture":
         if self.started:
@@ -139,21 +194,6 @@ class MsptiCapture:
             raise RuntimeError("msPTI set_buffer_size failed")
         self.writer_thread = threading.Thread(target=self._write_loop, name="mspti-writer", daemon=True)
         self.writer_thread.start()
-        kernel_started = False
-        try:
-            result = self.kernel_monitor.start(lambda data: self._enqueue("kernel", data))
-            if not self._success(result):
-                raise RuntimeError(f"KernelMonitor.start failed: {result}")
-            kernel_started = True
-            result = self.comm_monitor.start(lambda data: self._enqueue("communication", data))
-            if not self._success(result):
-                raise RuntimeError(f"CommunicationMonitor.start failed: {result}")
-        except Exception:
-            if kernel_started:
-                self.kernel_monitor.stop()
-            self.writer_done.set()
-            self.writer_thread.join(timeout=10)
-            raise
         self.started = True
         self.flush_thread = threading.Thread(target=self._flush_loop, name="mspti-flush", daemon=True)
         self.flush_thread.start()
@@ -167,16 +207,9 @@ class MsptiCapture:
         self.flush_thread.join(timeout=10)
         if self.flush_thread.is_alive():
             raise RuntimeError("msPTI flush thread did not stop; monitor remains active")
-        try:
-            # msPTI stop() performs a final flush before unregistering callbacks.
-            for label, monitor in (("kernel", self.kernel_monitor), ("communication", self.comm_monitor)):
-                result = monitor.stop()
-                if not self._success(result):
-                    self.last_error = f"{label} stop returned {result}"
-        finally:
-            self.writer_done.set()
-            self.writer_thread.join(timeout=10)
-            self.started = False
+        self.writer_done.set()
+        self.writer_thread.join(timeout=10)
+        self.started = False
         summary = self.summary()
         self.output.with_suffix(".summary.json").write_text(
             json.dumps(summary, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
@@ -186,6 +219,8 @@ class MsptiCapture:
         return {
             "output": str(self.output), "pid": os.getpid(),
             "interval_s": self.interval_s, "counts": dict(self.written),
+            "enable_file": str(self.enable_file) if self.enable_file else None,
+            "monitor_active": self.monitor_active, "transitions": self.transitions,
             "dropped": self.dropped, "callback_errors": self.callback_errors,
             "flush_errors": self.flush_errors, "last_error": self.last_error,
             "pipe_utilization": None,
@@ -216,7 +251,8 @@ def run_demo(args: argparse.Namespace) -> None:
         dist.init_process_group("hccl")
     output = args.output / f"rank{rank}-pid{os.getpid()}.jsonl"
     try:
-        with MsptiCapture(output, interval_s=args.interval, buffer_mb=args.buffer_mb) as capture:
+        with MsptiCapture(output, interval_s=args.interval, buffer_mb=args.buffer_mb,
+                          enable_file=args.enable_file) as capture:
             x = torch.randn((args.width, args.width), dtype=torch.float16, device=f"npu:{device}")
             y = torch.randn_like(x)
             for _ in range(args.iterations):
@@ -241,6 +277,8 @@ def main() -> None:
     parser.add_argument("--output", type=Path, required=True, help="JSONL path or demo output directory")
     parser.add_argument("--interval", type=float, default=0.5)
     parser.add_argument("--buffer-mb", type=int, default=64)
+    parser.add_argument("--enable-file", type=Path, default=Path("/home/enable_prof"),
+                        help="0/missing disables; 1 enables capture (checked every interval)")
     parser.add_argument("--devices", default="0", help="comma-separated physical NPU IDs for demo local ranks")
     parser.add_argument("--iterations", type=int, default=8)
     parser.add_argument("--width", type=int, default=256)
