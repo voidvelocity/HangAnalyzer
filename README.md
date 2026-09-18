@@ -1,6 +1,8 @@
-# Ascend Hang Flight Recorder（显式埋点 MVP）
+# Ascend Hang Analyzer
 
-用于在 vLLM-Ascend 服务卡住、profiler 无法正常停止时保留最近的 **Host** 事件和进程现场。支持两台机器分别采集、离线合并。当前没有 CANN/HCCL ABI hook，也不会把异步 API 返回解释成 NPU 已完成。
+用于在 vLLM-Ascend 服务卡住、profiler 无法正常停止时保留现场。推荐的统一 msPTI 采集器在每个 worker 内把 **CANN Runtime/HCCL API 进入与返回**、**已上报的 Kernel/HCCL Activity** 写到同一个 mmap ring；独立的显式埋点与 per-stream Event checkpoint 可补充请求、PP/KV 语义与设备完成水位。两机分别采集后离线对齐。
+
+先读 [统一 msPTI 采集器指南](MSPTI_FLIGHT_RECORDER.md)。它包含构建、`LD_PRELOAD`、`/home/enable_prof`、0.5 秒刷新、人类可读报告和 A2 真机测试命令。**Runtime callback 只能说明 CANN API 被调用，不能证明 torch_npu 上层队列或 Device 执行；Activity 缺失也不能证明算子没有运行。**
 
 Ascend A2 / CANN 9.1.0 的真机环境、测试项与结果见 [VALIDATION.md](VALIDATION.md)。
 
@@ -10,11 +12,11 @@ Per-Stream CANN Event checkpoint 的构建、接入、轮询和证据边界见 [
 
 4–7 号卡的真实多 Stream / HCCL 缺 Rank 卡死复现、重现命令和人类可读报告说明见 [FOUR_CARD_VALIDATION.md](FOUR_CARD_VALIDATION.md)。
 
-需要保存设备上实际执行的 kernel 时，可运行该复现脚本的 `--device-profile` 模式；它对已完成的阶段分段落盘，并生成 `device_operators.txt` 与每 Rank 的 `kernel_details.csv`。这类采集有明显额外开销，适合复现环境。
+需要保存设备上实际执行的 kernel 时，优先使用统一 msPTI ring；旧四卡复现脚本的 `--device-profile` 模式仍可用于对照，它在故障前结束 profile 窗口并生成 `device_operators.txt` 与 `kernel_details.csv`。
 
 ## 构建与启动
 
-目标环境为 Linux。需要 C++17、CMake、Python 3.9+；构建本身不依赖 CANN。
+目标环境为 Linux。需要 C++17、CMake、Python 3.9+。不指定 `CANN_HOME` 时仅构建原有显式埋点和 checkpoint 核心；指定后还构建 `libhangmspti.so`。
 
 ```bash
 cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
@@ -61,9 +63,9 @@ python3 -m flightrecorder.analyzer /data/merged-incident \
 
 `--npu-smi` 在快照时执行一次 `npu-smi info`，保存设备健康/利用率现场；它不能提供逐 Task completion。HCCL/CANN 设备日志可用重复的 `--log` 附加，确保选取当前环境实际日志路径。
 
-## 已知限制
+## 原有显式埋点路径的限制
 
-- 采集的是 Host 事件，不能直接显示 NPU 上最后完成的算子或 HCCL 内部 task。需要 CANN 9.2.0 目标环境的独立 device 侧证据。
+- `.flight` 采集的是显式 Host 事件；统一 `.msflight` 采集器则能显示 msPTI 已上报的设备算子。两者为不同格式和证据来源，当前需要人工对照。
 - 进程收到 SIGKILL 后无法再取 live stack；提前触发的 stalled snapshot 可保留当时 `/proc` 现场。
 - Python `ctypes` 每次调用有额外开销，不代表 C++ writer 的热路径性能。
 - 版本 1 的 watchdog 以“无 recorder 事件”判停滞；长时间正常执行需通过 checkpoint 和阈值避免误报。

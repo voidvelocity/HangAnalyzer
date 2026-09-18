@@ -173,6 +173,9 @@ def run(args: argparse.Namespace) -> None:
     (output / "flight").mkdir(parents=True)
     (output / "dumps").mkdir()
     (output / "logs").mkdir()
+    if args.mspti_library:
+        (output / "mspti").mkdir()
+        (output / "enable_prof").write_text("1")
     port = reserve_port()
     children: dict[int, subprocess.Popen] = {}
     log_handles = []
@@ -188,7 +191,16 @@ def run(args: argparse.Namespace) -> None:
                 command.append("--device-profile")
             if args.checkpoint_library:
                 command += ["--checkpoint-library", args.checkpoint_library]
-            children[rank] = subprocess.Popen(command, cwd=ROOT, stdout=log,
+            env = os.environ.copy()
+            if args.mspti_library:
+                env["LD_PRELOAD"] = args.mspti_preload + (
+                    " " + env["LD_PRELOAD"] if env.get("LD_PRELOAD") else "")
+                env["PYTHONPATH"] = os.pathsep.join(
+                    [str(ROOT / "python" / "bootstrap"), str(ROOT), env.get("PYTHONPATH", "")])
+                env["HANG_MSPTI_LIBRARY"] = args.mspti_library
+                env["HANG_MSPTI_DIR"] = str(output / "mspti")
+                env["HANG_MSPTI_ENABLE_FILE"] = str(output / "enable_prof")
+            children[rank] = subprocess.Popen(command, cwd=ROOT, env=env, stdout=log,
                                               stderr=subprocess.STDOUT)
         wait_until(lambda: all((output / f"rank{r}.ready").exists() for r in DEVICES),
                    time.monotonic() + args.startup_timeout, "workers did not initialize")
@@ -245,6 +257,18 @@ def run(args: argparse.Namespace) -> None:
         raise RuntimeError("no watchdog snapshot")
     report = analyze(paths, set(DEVICES))
     write_outputs(report, output / "report", paths)
+    if args.mspti_library:
+        from flightrecorder.mspti_ring import read_ring, report as mspti_report
+        mspti_reports = output / "report" / "mspti"
+        mspti_reports.mkdir()
+        for rank, child in children.items():
+            ring = output / "mspti" / f"mspti-{child.pid}.msflight"
+            if not ring.exists():
+                raise RuntimeError(f"missing msPTI ring for rank {rank}: {ring}")
+            _, mspti_events = read_ring(ring)
+            if not any(e["kind"] == "runtime_enter" for e in mspti_events):
+                raise RuntimeError(f"no Runtime callback on rank {rank}")
+            (mspti_reports / f"rank{rank}.txt").write_text(mspti_report(ring, tail=100))
     target = [c for c in report["collectives"] if c["operation_id"] == 2 and
               c["communicator_id"] == COMM]
     assert target and target[0]["missing_expected"] == [args.missing_rank], target
@@ -318,7 +342,11 @@ def main() -> None:
                    help="Profile and persist the completed first scheduler step on each NPU")
     p.add_argument("--checkpoint-library",
                    help="libflightcheckpoint_cann.so; enables per-stream nonblocking checkpoints")
+    p.add_argument("--mspti-library", help="libhangmspti.so; record callbacks and activities during hang")
+    p.add_argument("--mspti-preload", help="absolute path to libmspti.so; required with --mspti-library")
     args = p.parse_args()
+    if bool(args.mspti_library) != bool(args.mspti_preload):
+        p.error("--mspti-library and --mspti-preload must be used together")
     if args.worker:
         worker(args)
     else:

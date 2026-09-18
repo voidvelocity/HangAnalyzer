@@ -1,0 +1,111 @@
+file: /tmp/hang-fourcard-mspti-249457/mspti/mspti-249533.msflight
+pid: 249533  records: 609  overwritten: 0  dropped_buffers: 0
+counts: runtime_enter=46, runtime_exit=46, hccl_enter=1, hccl_exit=1, kernel_done=4, hccl_done=1, status=1, runtime_api_done=509
+callback entries without exits in retained window: 0
+completed kernels with matching Runtime API Activity correlation: 4/4
+last delivered completed activity per stream:
+  device=6 stream=2 #601 kernel_done corr=11 Mul_ee98c6628030785f610b924ab1557b31_high_performance_223000000
+  device=6 stream=4 #280 kernel_done corr=7 MatMulV2_ND_ND_FP32_FP32_false_false_all_66257
+  device=6 stream=6 #598 hccl_done corr=0 HcclAllReduce
+recent observations (device start/end use msPTI clock, not host monotonic clock):
+  + 11887.267ms #     510 runtime_api_done corr=19 code=249533 BinaryGetFunctionByName
+  + 11887.268ms #     511 runtime_api_done corr=19 code=249533 BinaryGetFunctionByName
+  + 11887.271ms #     512 runtime_api_done corr=19 code=249533 BinaryGetFunctionByName
+  + 11887.272ms #     513 runtime_api_done corr=19 code=249533 BinaryGetFunctionByName
+  + 11887.273ms #     514 runtime_api_done corr=19 code=249533 BinaryGetFunctionByName
+  + 11887.273ms #     515 runtime_api_done corr=19 code=249533 BinaryGetFunctionByName
+  + 11887.274ms #     516 runtime_api_done corr=19 code=249533 BinaryGetFunctionByName
+  + 11887.275ms #     517 runtime_api_done corr=19 code=249533 BinaryLoadFromFile
+  + 11887.275ms #     518 runtime_api_done corr=19 code=249533 BinaryGetFunctionByName
+  + 11887.276ms #     519 runtime_api_done corr=19 code=249533 BinaryGetFunctionByName
+  + 11887.277ms #     520 runtime_api_done corr=19 code=249533 BinaryGetFunctionByName
+  + 11887.277ms #     521 runtime_api_done corr=19 code=249533 BinaryGetFunctionByName
+  + 11887.278ms #     522 runtime_api_done corr=19 code=249533 BinaryGetFunctionByName
+  + 11887.279ms #     523 runtime_api_done corr=19 code=249533 BinaryGetFunctionByName
+  + 11887.280ms #     524 runtime_api_done corr=19 code=249533 BinaryLoadFromFile
+  + 11887.280ms #     525 runtime_api_done corr=20 code=249533 DevMalloc
+  + 11887.281ms #     526 runtime_api_done corr=22 code=249533 DevMalloc
+  + 11887.282ms #     527 runtime_api_done corr=24 code=249533 DevMalloc
+  + 11887.283ms #     528 runtime_api_done corr=26 code=249533 DevMalloc
+  + 11887.283ms #     529 runtime_api_done corr=28 code=249533 DevMalloc
+  + 11887.284ms #     530 runtime_api_done corr=29 code=249533 EventCreateEx
+  + 11887.285ms #     531 runtime_api_done corr=11 code=249718 EventRecord
+  + 11887.286ms #     532 runtime_api_done corr=29 code=249533 EventCreateEx
+  + 11887.287ms #     533 runtime_api_done corr=11 code=249718 StreamWaitEvent
+  + 11887.288ms #     534 runtime_api_done corr=29 code=249533 EventCreateEx
+  + 11887.289ms #     535 runtime_api_done corr=29 code=249533 EventRecord
+  + 11887.290ms #     536 runtime_api_done corr=11 code=249718 ContextGetCurrent
+  + 11887.290ms #     537 runtime_api_done corr=30 code=249718 DevMalloc
+  + 11887.291ms #     538 runtime_api_done corr=31 code=249718 StreamCreate
+  + 11887.292ms #     539 runtime_api_done corr=31 code=249718 ContextGetCurrent
+  + 11887.293ms #     540 runtime_api_done corr=31 code=249718 GetStreamMode
+  + 11887.294ms #     541 runtime_api_done corr=31 code=249718 SetStreamMode
+  + 11887.295ms #     542 runtime_api_done corr=31 code=249718 StreamCreate
+  + 11887.296ms #     543 runtime_api_done corr=31 code=249718 ContextGetCurrent
+  + 11887.299ms #     544 runtime_api_done corr=31 code=249718 GetStreamMode
+  + 11887.299ms #     545 runtime_api_done corr=31 code=249718 SetStreamMode
+  + 11887.300ms #     546 runtime_api_done corr=31 code=249718 StreamCreate
+  + 11887.301ms #     547 runtime_api_done corr=31 code=249718 ContextGetCurrent
+  + 11887.302ms #     548 runtime_api_done corr=31 code=249718 GetStreamMode
+  + 11887.303ms #     549 runtime_api_done corr=31 code=249718 SetStreamMode
+  + 11887.303ms #     550 runtime_api_done corr=31 code=249718 NotifyCreate
+  + 11887.304ms #     551 runtime_api_done corr=31 code=249718 NotifyCreate
+  + 11887.305ms #     552 runtime_api_done corr=31 code=249718 NotifyCreate
+  + 11887.306ms #     553 runtime_api_done corr=31 code=249718 NotifyCreate
+  + 11887.306ms #     554 runtime_api_done corr=31 code=249718 NotifyCreate
+  + 11887.307ms #     555 runtime_api_done corr=31 code=249718 NotifyCreate
+  + 11887.308ms #     556 runtime_api_done corr=0 code=249802 SetDevice
+  + 11887.309ms #     557 runtime_api_done corr=0 code=249804 SetDevice
+  + 11887.310ms #     558 runtime_api_done corr=0 code=249806 SetDevice
+  + 11887.311ms #     559 runtime_api_done corr=32 code=249802 HostFree
+  + 11887.311ms #     560 runtime_api_done corr=32 code=249802 NotifyCreate
+  + 11887.312ms #     561 runtime_api_done corr=32 code=249802 GetNotifyAddress
+  + 11887.313ms #     562 runtime_api_done corr=32 code=249802 NotifyCreate
+  + 11887.314ms #     563 runtime_api_done corr=32 code=249802 GetNotifyAddress
+  + 11887.315ms #     564 runtime_api_done corr=33 code=249806 HostFree
+  + 11887.315ms #     565 runtime_api_done corr=33 code=249806 NotifyCreate
+  + 11887.316ms #     566 runtime_api_done corr=33 code=249806 GetNotifyAddress
+  + 11887.317ms #     567 runtime_api_done corr=33 code=249806 NotifyCreate
+  + 11887.318ms #     568 runtime_api_done corr=33 code=249806 GetNotifyAddress
+  + 11887.318ms #     569 runtime_api_done corr=32 code=249802 IpcOpenNotify
+  + 11887.319ms #     570 runtime_api_done corr=32 code=249802 GetNotifyAddress
+  + 11887.320ms #     571 runtime_api_done corr=32 code=249802 IpcOpenNotify
+  + 11887.321ms #     572 runtime_api_done corr=32 code=249802 GetNotifyAddress
+  + 11887.322ms #     573 runtime_api_done corr=31 code=249718 DeviceReset
+  + 11887.322ms #     574 runtime_api_done corr=33 code=249806 IpcOpenNotify
+  + 11887.323ms #     575 runtime_api_done corr=33 code=249806 GetNotifyAddress
+  + 11887.330ms #     576 runtime_api_done corr=33 code=249806 IpcOpenNotify
+  + 11887.331ms #     577 runtime_api_done corr=33 code=249806 GetNotifyAddress
+  + 11887.331ms #     578 runtime_api_done corr=34 code=249804 HostFree
+  + 11887.332ms #     579 runtime_api_done corr=34 code=249804 NotifyCreate
+  + 11887.333ms #     580 runtime_api_done corr=34 code=249804 GetNotifyAddress
+  + 11887.334ms #     581 runtime_api_done corr=34 code=249804 NotifyCreate
+  + 11887.335ms #     582 runtime_api_done corr=34 code=249804 GetNotifyAddress
+  + 11887.335ms #     583 runtime_api_done corr=34 code=249804 IpcOpenNotify
+  + 11887.336ms #     584 runtime_api_done corr=34 code=249804 GetNotifyAddress
+  + 11887.337ms #     585 runtime_api_done corr=34 code=249804 IpcOpenNotify
+  + 11887.338ms #     586 runtime_api_done corr=34 code=249804 GetNotifyAddress
+  + 11887.339ms #     587 runtime_api_done corr=31 code=249718 DeviceReset
+  + 11887.339ms #     588 runtime_api_done corr=31 code=249718 DeviceReset
+  + 11887.340ms #     589 runtime_api_done corr=0 code=249810 SetDevice
+  + 11887.341ms #     590 runtime_api_done corr=31 code=249718 FftsPlusTaskLaunch
+  + 11887.342ms #     591 runtime_api_done corr=31 code=249718 EventRecord
+  + 11887.343ms #     592 runtime_api_done corr=31 code=249718 EventRecord
+  + 11887.343ms #     593 runtime_api_done corr=31 code=249718 StreamWaitEvent
+  + 11887.344ms #     594 runtime_api_done corr=31 code=249718 EventDestroy
+  + 11887.345ms #     595 runtime_api_done corr=29 code=249533 StreamSyncTaskFinish
+  + 11887.346ms #     596 runtime_api_done corr=29 code=249533 StreamSyncTaskFinish
+  + 11887.347ms #     597 runtime_api_done corr=29 code=249533 DeviceSynchronize
+  + 11887.348ms #     598 hccl_done        corr=0 device=6 stream=6 code=0 HcclAllReduce
+  + 11887.349ms #     599 runtime_api_done corr=29 code=249533 StreamSynchronize
+  + 11887.350ms #     600 runtime_api_done corr=35 code=249533 MemCopySync
+  + 11887.351ms #     601 kernel_done      corr=11 device=6 stream=2 code=0 Mul_ee98c6628030785f610b924ab1557b31_high_performance_223000000
+  + 11887.352ms #     602 runtime_api_done corr=0 code=249817 SetDevice
+  + 11887.353ms #     603 runtime_api_done corr=0 code=249818 SetDevice
+  + 11887.354ms #     604 runtime_api_done corr=0 code=249817 DeviceReset
+  + 11887.355ms #     605 runtime_api_done corr=0 code=249818 DeviceReset
+  + 12388.806ms #     606 runtime_enter    corr=281469800863832 code=1 aclrtSetDevice
+  + 12388.877ms #     607 runtime_exit     corr=281469800863832 code=1 aclrtSetDevice
+  + 12887.772ms #     608 runtime_api_done corr=0 code=249716 SetDevice
+  + 12887.773ms #     609 runtime_api_done corr=31 code=249718 EventDestroy
+Interpretation: *_done means a completed activity record was delivered to host; an absent record cannot prove that a kernel never ran. Callback exit means API returned, not device completion. Callback correlation IDs are not assumed reliable; match enter/exit by thread and callback ID.

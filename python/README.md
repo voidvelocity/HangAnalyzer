@@ -1,4 +1,6 @@
-# msPTI 26.1 Python 实时算子采集
+# 旧版 msPTI 26.1 Python 实时算子采集
+
+本目录的 `mspti_activity_capture.py` 保留此前“只用 Python 接口”的设备 Activity 采集方案，供兼容性对照。需要同时观察 CANN Runtime/HCCL API 进入/返回与设备已完成算子时，优先按 [统一 msPTI Flight Recorder](../MSPTI_FLIGHT_RECORDER.md) 使用 `libhangmspti.so`。**不要在同一个 worker 中同时启动两种 msPTI 采集器**；msPTI 订阅和 Activity 回调可能冲突。
 
 入口：[mspti_activity_capture.py](mspti_activity_capture.py)。采集端只调用 msPTI 的 **Python** `KernelMonitor`、`CommunicationMonitor`、`set_buffer_size`、`flush_all` 和 `stop`；不调用 C API，不需要编译本项目。每个 NPU worker 创建一个实例。回调只复制必要字段并入有界队列，独立线程写 JSONL；采集启用时默认每 0.5 秒主动 flush，并将新数据 `fsync` 到磁盘。
 

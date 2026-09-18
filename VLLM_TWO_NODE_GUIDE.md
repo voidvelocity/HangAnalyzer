@@ -1,6 +1,6 @@
 # 两机 vLLM-Ascend 卡死现场接入与定位指南
 
-本指南交给在真实 Ascend 950PR / CANN 9.2.0 环境工作的 agent。目标是保留请求进入、长序列调度、PP、split KV、HCCL、超时和退出全过程的 Host 证据，以及**已注册的实际 Stream** 的 Device 完成水位。当前项目**没有 vLLM 自动 hook 或可用的 LD_PRELOAD hook**。单独启动 watchdog 只能看到已有的 `.flight`，不能自动得到 Scheduler、PP、KV、HCCL 事件。要定位真实服务，先在其实际调用点加显式埋点。
+本指南交给在真实 Ascend 950PR / CANN 9.2.0 环境工作的 agent。目标是保留请求进入、长序列调度、PP、split KV、HCCL、超时和退出全过程的 Host 证据，以及**已注册的实际 Stream** 的 Device 完成水位。现新增统一 msPTI ring，可在适用的 worker 启动方式下通过 `LD_PRELOAD=libmspti.so` 与 `sitecustomize` 观察 CANN Runtime/HCCL 调用和已完成设备算子；它不会自动获得 Scheduler、请求 ID、PP/KV 语义，也不是 CANN 内部任务队列。完整边界、命令与验证见 [统一 msPTI 采集器指南](MSPTI_FLIGHT_RECORDER.md)。
 
 现场交付物应包含：接入代码 diff、软件版本和启动参数、global Rank/节点/PID/Device/PP stage/通信组/Stream 映射、请求 ID 与时间线、两机原始 `.flight` 和最早的活体 `stalled-*` 快照、每个相关通信组的可读报告，以及结论和证据边界。除已获授权的故障复现外，不终止无关服务。不要记录原始 prompt、KV 内容或凭据。
 
@@ -17,7 +17,7 @@ cmake --build build -j
 ctest --test-dir build --output-on-failure
 ```
 
-确认生成 `build/libflightrecorder.so` 与 `build/libflightcheckpoint_cann.so`，worker 能加载 CANN 运行库。两机都要在目标版本重新编译；A2/CANN 9.1.0 的 `.so` 不应直接复用。在可用测试卡上运行 [checkpoint 真机 smoke 脚本](tests/a2_checkpoint_smoke.py)以验证目标 CANN 的 Event query、后台线程与 generation。该脚本会提交 30 次 1024×1024 矩阵乘，选可承担负载的卡和新的输出目录：
+确认生成 `build/libflightrecorder.so`、`build/libflightcheckpoint_cann.so` 与 `build/libhangmspti.so`，worker 能加载 CANN 运行库。两机都要在目标版本重新编译；A2/CANN 9.1.0 的 `.so` 不应直接复用。在可用测试卡上分别运行 [msPTI 单卡 smoke](tests/a2_mspti_ring_smoke.py)与 [checkpoint 真机 smoke](tests/a2_checkpoint_smoke.py)。前者必须从进程启动时预加载目标版本的 `libmspti.so`；不预加载时 Runtime Domain 会报错 6。后者验证目标 CANN 的 Event query、后台线程与 generation，提交 30 次 1024×1024 矩阵乘。选择可承担负载的卡和新输出目录：
 
 ```bash
 python3 tests/a2_checkpoint_smoke.py \
@@ -25,9 +25,28 @@ python3 tests/a2_checkpoint_smoke.py \
   --checkpoint-library "$PWD/build/libflightcheckpoint_cann.so" \
   --directory /data/hang/preflight-checkpoint-node0 \
   --device <available-local-device-id>
+
+LD_PRELOAD=/path/to/CANN-9.2.0/lib64/libmspti.so PYTHONPATH="$PWD" \
+python3 tests/a2_mspti_ring_smoke.py \
+  --library "$PWD/build/libhangmspti.so" \
+  --output /data/hang/preflight-mspti-node0.msflight \
+  --device <available-local-device-id>
 ```
 
 若目标版本的编译或 Event query 验证失败，保存错误，先只启用 Host recorder；不要把未验证的 Device confirmation 用于结论。
+
+### 1.1 统一 Runtime 与 Device ring
+
+正式启动服务前，在两机每个**最终 worker** 都启用统一采集。spawn/exec 式 worker 可按 [统一采集器指南](MSPTI_FLIGHT_RECORDER.md)配置 `LD_PRELOAD`、`PYTHONPATH`、`HANG_MSPTI_*` 与 `/home/enable_prof`；fork 式 worker 需在 fork 完成后显式调用 `hang_mspti.start()`，不能继承父进程的 msPTI 订阅。先让控制文件为 `0` 拉起服务，再设为 `1` 并发短请求，确认每个 PID 的 `.msflight` 出现 `runtime_enter`、`kernel_done`，且无 `.error`。真实故障请求前重新设为 `1`。运行中每 0.5 秒 flush 已完成 Activity；若 msPTI 自身卡在 flush，mmap 中已经发布的 Callback 仍可由外部读取。
+
+故障后，每个 worker 直接查看：
+
+```bash
+PYTHONPATH=/path/to/HangAnalyzer python3 -m flightrecorder.mspti_ring \
+  /data/hang/incident-001/node0/mspti/mspti-<PID>.msflight --tail 100
+```
+
+两机文件按节点、PID 保留。`.msflight` 里的 Callback 是 CANN API 层，`.flight` 里的显式埋点是 vLLM 语义层，Event checkpoint 是注册 Stream 的完成确认。分析时按这三个层次合并证据，不把 Callback exit 或缺失 Activity 直接解释成 Device 已完成/未执行。该自动路径在 A2/CANN 9.1.0 已验证，在 950PR/CANN 9.2.0 必须做本节的预检后才能用于结论。
 
 ## 2. 最小接入点
 
@@ -159,4 +178,4 @@ cat /data/hang/incident-001/report-comm700/snapshots.txt
 
 四卡示例的 `--device-profile` 会在故障前关闭 profiler 窗口，保存真实设备 kernel CSV；该选项**不是 vLLM 服务开关**。真实 vLLM 需按部署版本接入分段 torch_npu profiler，且窗口必须在卡死前完成落盘。官方 vLLM-Ascend 也提供 `--profiler-config` 与 `/start_profile`、`/stop_profile`，但卡死后无法执行 stop 时不能保证完整输出。[官方 profiling 指南](https://docs.vllm.ai/projects/ascend/en/main/developer_guide/performance_and_debug/service_profiling_guide.html)
 
-本工具目前没有 CANN 内部逐 Task completion、HCCL 内部等待图或 vLLM 自动接入。A2/CANN 9.1.0 已验证 Event 池、非阻塞查询、后台 poller、generation、Analyzer 和四卡真实 HCCL 缺 Rank；950PR/CANN 9.2.0 必须完成第 1 节编译预检和第 4 节校准后，才把 Device checkpoint 当成该现场的有效证据。
+本工具目前没有 CANN 内部逐 Task completion、HCCL 内部等待图或 vLLM Scheduler/PP/KV 自动语义接入。A2/CANN 9.1.0 已验证统一 Runtime/HCCL Callback + Kernel/HCCL Activity ring、0/1 开关、Event 池、非阻塞查询、后台 poller、generation、Analyzer 和四卡真实 HCCL 缺 Rank；950PR/CANN 9.2.0 必须完成第 1 节编译预检和第 4 节校准后，才把对应 Device 证据用于该现场。

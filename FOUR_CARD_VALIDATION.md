@@ -1,5 +1,20 @@
 # A2 四卡多 Stream / HCCL 卡死复现
 
+## 统一 msPTI ring 复验（2026-09-18）
+
+在相同的 4、5、6、7 卡受控缺 Rank 场景中，为四个 worker 用 `LD_PRELOAD=libmspti.so` 与 `sitecustomize` 启动 `libhangmspti.so`，保持 0.5 秒 Activity flush。控制器捕获 stalled 快照后，仅停止自己启动的 worker。执行命令：
+
+```bash
+PYTHONPATH=. python examples/four_card_hccl_hang.py \
+  --library /tmp/hang-mspti-build/libflightrecorder.so \
+  --checkpoint-library /tmp/hang-mspti-build/libflightcheckpoint_cann.so \
+  --mspti-library /tmp/hang-mspti-build/libhangmspti.so \
+  --mspti-preload /usr/local/Ascend/cann-9.1.0/lib64/libmspti.so \
+  --output /tmp/hang-fourcard-mspti-249457 --hang-timeout 5
+```
+
+运行结果 `PASS`。四个 PID 的 `.msflight` 都在卡死/终止后可读，`overwritten=0`、`dropped_buffers=0`，且有 Runtime enter/exit、Kernel Activity 和 HCCL Activity。Rank 4/5/7 各观察到 **2 次 HCCL enter/exit**，Rank 6 只观察到 **1 次**；四卡均只交付了第一轮的 HCCL 完成 Activity。第二轮未交付 HCCL 完成记录，需与显式 `.flight` 的缺 Rank 和开放 `DEVICE_SYNC_BEGIN` 一起判读，不能只凭缺失 Activity 断言设备任务未运行。人类可读原始报告见 [rank4](results/a2-fourcard-mspti-20260918/report/mspti/rank4.txt)、[rank5](results/a2-fourcard-mspti-20260918/report/mspti/rank5.txt)、[rank6](results/a2-fourcard-mspti-20260918/report/mspti/rank6.txt)、[rank7](results/a2-fourcard-mspti-20260918/report/mspti/rank7.txt) 和 [跨 Rank 显式事件报告](results/a2-fourcard-mspti-20260918/report/report.txt)。原始 33 MiB/PID 的 ring 保留在测试容器 `/tmp/hang-fourcard-mspti-249457/mspti/`，未纳入仓库。
+
 ## 场景与结果
 
 在 `173.125.1.2` 的 `gl_main_a2` 容器中，分别用一个进程绑定 Ascend A2 的 4、5、6、7 号卡。每个进程创建计算 Stream 和传输 Stream，运行矩阵乘、跨 Stream Event 等待、KV 数据副本任务，再进行设备同步。第一轮四卡 HCCL AllReduce 正常完成。
